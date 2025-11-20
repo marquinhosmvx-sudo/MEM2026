@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marcos ♥ Marieli — 16.05.2026</title>
 
-    <!-- Fontes elegantes -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Estilos principais -->
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
             color: #3D3D3D;
-            background-color: #C7D3E6; /* Serenity */
+            background-color: #C7D3E6;
             background-image: url('assets/img/rosa-textura.png');
             background-size: cover;
             background-repeat: repeat;
@@ -29,14 +27,12 @@
             text-align: center;
         }
 
-        /* Brasão */
         .brasao {
             width: 150px;
             margin: 0 auto 20px auto;
             opacity: 0.92;
         }
 
-        /* Títulos */
         h1 {
             font-family: 'Playfair Display', serif;
             font-size: 42px;
@@ -57,12 +53,11 @@
         .divider {
             width: 80px;
             height: 2px;
-            background-color: #D2C29D; /* dourado suave */
+            background-color: #D2C29D;
             margin: 25px auto;
             border-radius: 3px;
         }
 
-        /* Contagem regressiva */
         #countdown {
             font-size: 20px;
             margin-top: 20px;
@@ -70,7 +65,6 @@
             color: #2f2f2f;
         }
 
-        /* Botões */
         .btn {
             display: inline-block;
             margin: 22px 12px 0 12px;
@@ -88,4 +82,52 @@
             color: #2f2f2f;
         }
 
-        /* Mobile *
+        @media(max-width: 600px) {
+            h1 { font-size: 32px; }
+            .brasao { width: 120px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <img src="assets/img/brasao.png" class="brasao" alt="Brasão Marcos e Marieli">
+
+        <h1>Marcos ♥ Marieli</h1>
+        <h2>16 • 05 • 2026</h2>
+
+        <div class="divider"></div>
+
+        <div id="countdown">Carregando...</div>
+
+        <a href="rsvp.html" class="btn">Confirmar Presença</a>
+        <a href="lista-presentes.html" class="btn">Lista de Presentes</a>
+        <a href="sala-da-noiva.html" class="btn">Sala da Noiva</a>
+    </div>
+
+    <script>
+        function atualizarContagem() {
+            const casamento = new Date("May 16, 2026 00:00:00").getTime();
+            const agora = new Date().getTime();
+            const diff = casamento - agora;
+
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "É HOJE! ❤️";
+                return;
+            }
+
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                `${dias} dias • ${horas}h • ${minutos}m • ${segundos}s`;
+        }
+
+        setInterval(atualizarContagem, 1000);
+    </script>
+
+</body>
+</html>
