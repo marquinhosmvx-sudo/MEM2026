@@ -112,10 +112,18 @@
         <div class="divider"></div>
 
         <!-- Formulário -->
-        <form id="rsvpForm">
-            <input type="text" id="nome" placeholder="Seu nome completo" required>
-            <input type="number" id="acompanhantes" placeholder="Qtd. de acompanhantes" min="0" required>
-            <textarea id="mensagem" placeholder="Mensagem (opcional)" rows="4"></textarea>
+<form id="rsvpForm" enctype="multipart/form-data">
+    <input type="text" id="nome" placeholder="Seu nome completo" required>
+    <input type="number" id="acompanhantes" placeholder="Qtd. de acompanhantes" min="0" required>
+    <input type="tel" id="telefone" placeholder="Telefone (WhatsApp)" required>
+
+    <label style="font-weight:600; margin-top:10px; display:block;">Foto da Família (opcional):</label>
+    <input type="file" id="foto" accept="image/*">
+
+    <textarea id="mensagem" placeholder="Mensagem (opcional)" rows="4"></textarea>
+
+    <button type="submit">Enviar Confirmação</button>
+</form>
 
             <button type="submit">Enviar Confirmação</button>
         </form>
