@@ -73,6 +73,11 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        input[type="file"] {
+            border: none;
+            padding: 5px;
+        }
+
         button {
             margin-top: 15px;
             padding: 12px 30px;
@@ -112,18 +117,15 @@
         <div class="divider"></div>
 
         <!-- Formulário -->
-<form id="rsvpForm" enctype="multipart/form-data">
-    <input type="text" id="nome" placeholder="Seu nome completo" required>
-    <input type="number" id="acompanhantes" placeholder="Qtd. de acompanhantes" min="0" required>
-    <input type="tel" id="telefone" placeholder="Telefone (WhatsApp)" required>
+        <form id="rsvpForm" enctype="multipart/form-data">
+            <input type="text" id="nome" placeholder="Seu nome completo" required>
+            <input type="number" id="acompanhantes" placeholder="Qtd. de acompanhantes" min="0" required>
+            <input type="tel" id="telefone" placeholder="Telefone (WhatsApp)" required>
 
-    <label style="font-weight:600; margin-top:10px; display:block;">Foto da Família (opcional):</label>
-    <input type="file" id="foto" accept="image/*">
+            <label style="font-weight:600; margin-top:10px; display:block;">Foto da Família (opcional):</label>
+            <input type="file" id="foto" accept="image/*">
 
-    <textarea id="mensagem" placeholder="Mensagem (opcional)" rows="4"></textarea>
-
-    <button type="submit">Enviar Confirmação</button>
-</form>
+            <textarea id="mensagem" placeholder="Mensagem (opcional)" rows="4"></textarea>
 
             <button type="submit">Enviar Confirmação</button>
         </form>
@@ -132,10 +134,54 @@
     </div>
 
     <script>
-        document.getElementById("rsvpForm").addEventListener("submit", function(e){
+        document.getElementById("rsvpForm").addEventListener("submit", async function(e){
             e.preventDefault();
 
-            alert("Presença confirmada com sucesso! 💙\nObrigado por comemorar com Marcos & Marieli.");
+            const nome = document.getElementById("nome").value;
+            const acompanhantes = document.getElementById("acompanhantes").value;
+            const telefone = document.getElementById("telefone").value;
+            const mensagem = document.getElementById("mensagem").value;
+            const foto = document.getElementById("foto").files[0];
+
+            // --------------------------
+            // 1) ENVIO PARA E-MAIL
+            // --------------------------
+            let corpoEmail = 
+`Nova confirmação de presença:
+
+Nome: ${nome}
+Acompanhantes: ${acompanhantes}
+Telefone: ${telefone}
+Mensagem: ${mensagem || "Nenhuma mensagem"}
+
+(Se houver foto, ela estará anexada pelo convidado.)`;
+
+            const mailtoLink = `mailto:marcosemaricasamento@gmail.com?subject=Nova confirmação de presença&body=${encodeURIComponent(corpoEmail)}`;
+            window.location.href = mailtoLink;
+
+            // --------------------------
+            // 2) WHATSAPP (OPCIONAL)
+            // Basta inserir seu número no formato internacional:
+            // Exemplo: const numero = "+5585999998888";
+            // --------------------------
+            const numero = ""; // <- quando quiser ativar, coloque seu número aqui
+
+            if (numero !== "") {
+                const msgWpp =
+`*Nova confirmação de presença:*
+
+• *Nome:* ${nome}
+• *Acompanhantes:* ${acompanhantes}
+• *Telefone:* ${telefone}
+• *Mensagem:* ${mensagem || "Nenhuma"}
+
+(Se houve foto, o convidado anexou no formulário.)`;
+
+                const wppUrl = `https://wa.me/${numero.replace(/\D/g, "")}?text=${encodeURIComponent(msgWpp)}`;
+                window.open(wppUrl, "_blank");
+            }
+
+            alert("Presença confirmada com sucesso! 💙\nObrigado por celebrar com Marcos & Marieli.");
 
             document.getElementById("rsvpForm").reset();
         });
