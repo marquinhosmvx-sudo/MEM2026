@@ -1,1 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Padrinhos — Marcos ♥ Marieli</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #C7D3E6;
+            background-image: url('assets/img/rosa-textura.png');
+            background-size: cover;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            color: #3D3D3D;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .brasao {
+            width: 150px;
+            opacity: 0.92;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background-color: #D2C29D;
+            margin: 20px auto 40px auto;
+            border-radius: 3px;
+        }
+
+        .texto-emocional {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 50px;
+            color: #2b2b2b;
+            line-height: 1.7;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 30px;
+            padding: 0 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.65);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.06);
+            backdrop-filter: blur(3px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin: 0;
+            color: #2b2b2b;
+        }
+
+        a.voltar {
+            display: inline-block;
+            margin-top: 40px;
+            text-decoration: none;
+            color: #2b2b2b;
+            font-weight: 500;
+        }
+
+        .mensagem-vazia {
+            font-size: 18px;
+            color: #444;
+            opacity: 0.9;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <img src="assets/img/brasao.png" class="brasao" alt="Brasão">
+
+        <h1>Padrinhos</h1>
+
+        <div class="divider"></div>
+
+        <p class="texto-emocional" id="textoEmocional"></p>
+
+        <div id="listaPadrinhos" class="grid"></div>
+
+        <p id="mensagemVazia" class="mensagem-vazia" style="display:none;">
+            Ainda não há padrinhos cadastrados.  
+            Assim que forem adicionados no painel do administrador, aparecerão aqui.
+        </p>
+
+        <a href="index.html" class="voltar">← Voltar ao início</a>
+    </div>
+
+    <script>
+        fetch('assets/data/padrinhos.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("textoEmocional").textContent = data.texto;
+
+                const lista = document.getElementById("listaPadrinhos");
+
+                if (data.lista.length === 0) {
+                    document.getElementById("mensagemVazia").style.display = "block";
+                }
+
+                data.lista.forEach(item => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    card.innerHTML = `
+                        <img src="${item.foto}" alt="${item.nome}">
+                        <h3>${item.nome}</h3>
+                    `;
+
+                    lista.appendChild(card);
+                });
+            });
+    </script>
+
+</body>
+</html>
 
