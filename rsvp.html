@@ -1,1 +1,137 @@
-<html><body><h1>RSVP</h1></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmar Presença — Marcos ♥ Marieli</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #3D3D3D;
+            background-color: #C7D3E6;
+            background-image: url('assets/img/rosa-textura.png');
+            background-size: cover;
+            background-repeat: repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .brasao {
+            width: 130px;
+            margin: 0 auto 20px auto;
+            opacity: 0.92;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            margin-top: 0;
+            letter-spacing: 1px;
+            color: #444;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background-color: #D2C29D;
+            margin: 20px auto 35px auto;
+            border-radius: 3px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.65);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.06);
+            backdrop-filter: blur(2px);
+        }
+
+        input, textarea {
+            width: 95%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            background-color: #3D3D3D;
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #D2C29D;
+            color: #2f2f2f;
+        }
+
+        a.voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2f2f2f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Brasão -->
+        <img src="assets/img/brasao.png" class="brasao" alt="Brasão">
+
+        <h1>Confirmar Presença</h1>
+        <h2>Marcos ♥ Marieli — 16.05.2026</h2>
+
+        <div class="divider"></div>
+
+        <!-- Formulário -->
+        <form id="rsvpForm">
+            <input type="text" id="nome" placeholder="Seu nome completo" required>
+            <input type="number" id="acompanhantes" placeholder="Qtd. de acompanhantes" min="0" required>
+            <textarea id="mensagem" placeholder="Mensagem (opcional)" rows="4"></textarea>
+
+            <button type="submit">Enviar Confirmação</button>
+        </form>
+
+        <a href="index.html" class="voltar">← Voltar ao início</a>
+    </div>
+
+    <script>
+        document.getElementById("rsvpForm").addEventListener("submit", function(e){
+            e.preventDefault();
+
+            alert("Presença confirmada com sucesso! 💙\nObrigado por comemorar com Marcos & Marieli.");
+
+            document.getElementById("rsvpForm").reset();
+        });
+    </script>
+
+</body>
+</html>
