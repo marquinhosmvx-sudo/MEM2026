@@ -5,30 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RSVP | MEM2026</title>
 
-    <!-- Fontes do projeto -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: #f6f8fc;
+            background: #f4f7fb;
             font-family: 'Montserrat', sans-serif;
+            background-image: url('assets/images/texture-roses.png');
+            background-size: cover;
+            background-attachment: fixed;
         }
 
         .container {
             max-width: 760px;
-            margin: 40px auto;
+            margin: 50px auto;
             background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(14px);
-            padding: 45px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            backdrop-filter: blur(16px);
+            padding: 50px;
+            border-radius: 22px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.07);
+        }
+
+        .brasao {
+            display: block;
+            margin: 0 auto 25px auto;
+            width: 220px;
         }
 
         h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 34px;
+            font-size: 36px;
             text-align: center;
             margin-bottom: 10px;
             color: #1a1a1a;
@@ -37,155 +45,17 @@
         p.sub {
             text-align: center;
             margin-top: 0;
-            margin-bottom: 25px;
-            color: #5c5c5c;
+            margin-bottom: 30px;
+            color: #555;
             font-size: 16px;
         }
 
         label {
-            margin-top: 20px;
+            margin-top: 18px;
             display: block;
             font-weight: 600;
             font-size: 15px;
         }
 
         input, select {
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            border: 1px solid #cfcfcf;
-            margin-top: 6px;
-            font-size: 15px;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            background: #1a1a1a;
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            margin-top: 30px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            letter-spacing: 0.5px;
-        }
-
-        button:hover {
-            background: #bfa85a;
-        }
-
-        .file-area, .acompanhantes-area {
-            margin-top: 28px;
-            background: rgba(255,255,255,0.8);
-            padding: 22px;
-            border-radius: 14px;
-            border: 1px solid #e3e3e3;
-        }
-
-        .acompanhante-box {
-            background: rgba(255,255,255,0.85);
-            padding: 20px;
-            border: 1px solid #dcdcdc;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-
-        .remove-btn {
-            background: #7d1212;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 12px;
-            cursor: pointer;
-        }
-
-        #mensagem {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 16px;
-            color: #333;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h2>Confirmação de Presença</h2>
-    <p class="sub">Estamos muito felizes em celebrar esse momento com você 💙</p>
-
-    <form id="rsvpForm" enctype="multipart/form-data">
-
-        <label>Seu Nome Completo</label>
-        <input type="text" name="nome" required>
-
-        <label>Telefone</label>
-        <input type="text" name="telefone" placeholder="(DDD) 99999-9999" required>
-
-        <label>Você irá ao casamento?</label>
-        <select name="presenca" id="presenca" required>
-            <option value="">Selecione...</option>
-            <option value="sim">Sim, confirmo presença</option>
-            <option value="nao">Infelizmente não poderei ir</option>
-        </select>
-
-        <div id="fotoArea" class="file-area" style="display:none;">
-            <label>Foto Obrigatória</label>
-            <input type="file" name="foto" id="foto" accept="image/*" required>
-        </div>
-
-        <div id="areaAcompanhantes" class="acompanhantes-area" style="display:none;">
-            <h3 style="margin-top:0;font-family:'Playfair Display',serif; font-size:22px;">Acompanhantes</h3>
-            <div id="listaAcompanhantes"></div>
-            <button type="button" id="addAcompanhante">Adicionar Acompanhante</button>
-        </div>
-
-        <button type="submit">Enviar Confirmação</button>
-    </form>
-
-    <p id="mensagem"></p>
-</div>
-
-<script>
-const presenca = document.getElementById('presenca');
-const fotoArea = document.getElementById('fotoArea');
-const areaAcompanhantes = document.getElementById('areaAcompanhantes');
-const listaAcompanhantes = document.getElementById('listaAcompanhantes');
-const addAcompanhante = document.getElementById('addAcompanhante');
-
-presenca.addEventListener('change', () => {
-    if (presenca.value === 'sim') {
-        fotoArea.style.display = 'block';
-        areaAcompanhantes.style.display = 'block';
-        document.getElementById('foto').required = true;
-    } else {
-        fotoArea.style.display = 'none';
-        areaAcompanhantes.style.display = 'none';
-        document.getElementById('foto').required = false;
-    }
-});
-
-addAcompanhante.addEventListener('click', () => {
-    const box = document.createElement('div');
-    box.className = 'acompanhante-box';
-
-    box.innerHTML = `
-        <label>Nome do Acompanhante</label>
-        <input type="text" name="acompanhantes[]" required>
-        <button type="button" class="remove-btn" onclick="this.parentElement.remove()">Remover</button>
-    `;
-
-    listaAcompanhantes.appendChild(box);
-});
-
-document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-
-    const response = await fetch('send_rsvp.php', { method: 'POST', body: formData });
-    const result = await response.text();
-    document.getElementById('mensagem').innerHTML = result;
-});
-    
+            w
