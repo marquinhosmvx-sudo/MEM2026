@@ -3,241 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSVP • MEM2026</title>
+    <title>RSVP – MEM2026</title>
 
-    <!-- FONTES -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --serenity: #CFD8E7;
-            --gold: #d4c29a;
-            --white: #ffffff;
-            --charcoal: #111111;
-            --card-bg: rgba(255, 255, 255, 0.75);
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: var(--serenity) url('assets/texture-rosas.png') center/cover no-repeat fixed;
-            font-family: "Montserrat", sans-serif;
-            color: var(--charcoal);
-        }
-
-        .container {
-            max-width: 680px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-family: "Playfair Display", serif;
-            font-weight: 500;
-            text-align: center;
-            font-size: 2.1rem;
-            margin-bottom: 10px;
-        }
-
-        p.sub {
-            text-align: center;
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        label {
-            font-weight: 500;
-            margin-bottom: 6px;
-            display: block;
-            font-size: 0.9rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            font-size: 0.9rem;
-            background: white;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-
-        textarea {
-            resize: none;
-            height: 110px;
-        }
-
-        .file-input {
-            border: 2px dashed #aaa;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 25px;
-            text-align: center;
-            cursor: pointer;
-            border-radius: 14px;
-            margin-bottom: 20px;
-        }
-
-        .file-input:hover {
-            border-color: var(--gold);
-        }
-
-        .acompanhantes-title {
-            font-family: "Playfair Display", serif;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .add-btn {
-            background: none;
-            border: 1px solid var(--gold);
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-            color: var(--charcoal);
-            margin-bottom: 20px;
-        }
-
-        .add-btn:hover {
-            background: var(--gold);
-            color: white;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--charcoal);
-            color: white;
-            border-radius: 12px;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .submit-btn:hover {
-            opacity: 0.8;
-        }
-
-        .preview-img {
-            width: 100%;
-            max-height: 260px;
-            object-fit: cover;
-            border-radius: 14px;
-            margin-top: 10px;
-            display: none;
-        }
-
-        @media (max-width: 480px) {
-            .card { padding: 30px 20px; }
-            h1 { font-size: 1.8rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="rsvp.css">
 </head>
 
 <body>
+    <header class="header">
+        <h1 class="title">Confirmação de Presença</h1>
+        <p class="subtitle">MEM2026</p>
+    </header>
 
-<div class="container">
-    <div class="card">
+    <main class="container">
 
-        <h1>Confirme sua Presença</h1>
-        <p class="sub">RSVP – Casamento Marcos & Eduarda • MEM2026</p>
+        <form id="rsvpForm">
 
-        <form id="rsvpForm" enctype="multipart/form-data">
+            <!-- DADOS BÁSICOS -->
+            <section class="section">
+                <h2 class="section-title">Seus Dados</h2>
 
-            <!-- FOTO OBRIGATÓRIA -->
-            <label>Foto do convidado (obrigatório)</label>
-            <div class="file-input" onclick="document.getElementById('foto').click()">
-                Clique para enviar sua foto ou da sua família
-            </div>
-            <input type="file" id="foto" name="foto" accept="image/*" required style="display:none;">
-            <img id="preview" class="preview-img" />
+                <label>
+                    Nome completo *
+                    <input type="text" id="nome" name="nome" required>
+                </label>
 
-            <!-- NOME -->
-            <label for="nome">Seu Nome</label>
-            <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                <label>
+                    E-mail *
+                    <input type="email" id="email" name="email" required>
+                </label>
 
-            <!-- TELEFONE -->
-            <label for="telefone">Telefone</label>
-            <input type="tel" id="telefone" name="telefone" required placeholder="(DDD) 90000-0000">
+                <label>
+                    Telefone *
+                    <input type="tel" id="telefone" name="telefone" required>
+                </label>
+
+                <label>
+                    Você irá ao casamento? *
+                    <select id="presenca" name="presenca" required>
+                        <option value="">Selecione...</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                </label>
+            </section>
 
             <!-- ACOMPANHANTES -->
-            <p class="acompanhantes-title">Acompanhantes</p>
+            <section id="acompanhantesSection" class="section hidden">
+                <h2 class="section-title">Acompanhantes</h2>
 
-            <div id="acompanhantes"></div>
+                <label>
+                    Quantos acompanhantes?
+                    <input type="number" id="qtdAcompanhantes" min="0" max="5" value="0">
+                </label>
 
-            <button type="button" class="add-btn" onclick="addAcompanhante()">+ Adicionar acompanhante</button>
+                <div id="acompanhantesContainer"></div>
+            </section>
 
-            <!-- COMENTÁRIOS -->
-            <label for="comentarios">Comentários (opcional)</label>
-            <textarea id="comentarios" name="comentarios" placeholder="Alergias, observações, restrições alimentares..."></textarea>
+            <!-- RESTRIÇÕES -->
+            <section class="section">
+                <h2 class="section-title">Restrições Alimentares</h2>
 
-            <!-- SUBMIT -->
-            <button type="submit" class="submit-btn">Enviar Confirmação</button>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="temRestricoes"> Possuo restrições alimentares
+                </label>
+
+                <textarea id="restricoesTexto" class="hidden" placeholder="Descreva suas restrições..."></textarea>
+            </section>
+
+            <!-- MENSAGEM AO CASAL -->
+            <section class="section">
+                <h2 class="section-title">Mensagem ao casal</h2>
+                <textarea id="mensagem" placeholder="Escreva algo especial (opcional)..."></textarea>
+            </section>
+
+            <!-- RESUMO -->
+            <section id="resumoSection" class="section hidden">
+                <h2 class="section-title">Resumo da Confirmação</h2>
+                <div id="resumoConteudo"></div>
+            </section>
+
+            <button type="button" id="btnResumo" class="btn">Visualizar Resumo</button>
+            <button type="submit" id="btnEnviar" class="btn hidden">Enviar Confirmação</button>
+
+            <p id="status" class="status"></p>
+
         </form>
+    </main>
 
-    </div>
-</div>
-
-<script>
-let count = 0;
-
-// Pré-visualização da foto
-document.getElementById("foto").addEventListener("change", function () {
-    const preview = document.getElementById("preview");
-    const file = this.files[0];
-    if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
-    }
-});
-
-// Campos dinâmicos de acompanhantes
-function addAcompanhante() {
-    count++;
-
-    const div = document.createElement("div");
-    div.innerHTML = `
-        <input type="text" name="acompanhante_${count}" placeholder="Nome do acompanhante ${count}">
-    `;
-
-    document.getElementById("acompanhantes").appendChild(div);
-}
-
-// Envio organizado por email (formato B)
-document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const data = new FormData(form);
-
-    // 📨 Aqui é onde você integra com seu backend / Google Apps Script / Node / PHP
-    fetch("https://seu-endpoint-de-envio.com/api", {
-        method: "POST",
-        body: data
-    })
-    .then(() => {
-        alert("Sua confirmação foi enviada com sucesso! ❤️");
-        form.reset();
-        document.getElementById("preview").style.display = "none";
-    })
-    .catch(() => alert("Ocorreu um erro ao enviar sua confirmação. Tente novamente."));
-});
-</script>
-
+    <script src="rsvp.js"></script>
 </body>
 </html>
