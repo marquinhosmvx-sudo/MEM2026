@@ -4,111 +4,188 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RSVP | MEM2026</title>
+
+    <!-- Fontes do projeto -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f7f7f7;
+            background: #f6f8fc;
+            font-family: 'Montserrat', sans-serif;
         }
+
         .container {
-            max-width: 600px;
+            max-width: 760px;
             margin: 40px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         }
+
         h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
         }
+
+        p.sub {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #5c5c5c;
+            font-size: 16px;
+        }
+
         label {
+            margin-top: 20px;
             display: block;
-            margin-top: 15px;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 15px;
         }
+
         input, select {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        button {
-            background: #000;
-            color: #fff;
             padding: 14px;
-            border: none;
-            border-radius: 6px;
+            border-radius: 12px;
+            border: 1px solid #cfcfcf;
+            margin-top: 6px;
+            font-size: 15px;
+        }
+
+        button {
             width: 100%;
+            padding: 15px;
+            background: #1a1a1a;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            margin-top: 30px;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 25px;
+            transition: 0.3s;
+            letter-spacing: 0.5px;
         }
+
         button:hover {
-            opacity: 0.85;
+            background: #bfa85a;
         }
-        .acompanhantes-area {
-            margin-top: 20px;
-            background: #fafafa;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
+
+        .file-area, .acompanhantes-area {
+            margin-top: 28px;
+            background: rgba(255,255,255,0.8);
+            padding: 22px;
+            border-radius: 14px;
+            border: 1px solid #e3e3e3;
         }
-        .acompanhante {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+
+        .acompanhante-box {
+            background: rgba(255,255,255,0.85);
+            padding: 20px;
+            border: 1px solid #dcdcdc;
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
+
         .remove-btn {
-            background: #b30000;
-            margin-top: 10px;
+            background: #7d1212;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 12px;
+            cursor: pointer;
         }
-        .file-area {
+
+        #mensagem {
+            text-align: center;
             margin-top: 20px;
-            padding: 15px;
-            background: #fafafa;
-            border-radius: 8px;
-            border: 1px solid #ddd;
+            font-size: 16px;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Confirmação de Presença</h2>
-        <form id="rsvpForm" enctype="multipart/form-data">
-            <label>Seu Nome Completo:</label>
-            <input type="text" name="nome" required />
 
-            <label>Telefone:</label>
-            <input type="text" name="telefone" placeholder="(DDD) 99999-9999" required />
+<div class="container">
+    <h2>Confirmação de Presença</h2>
+    <p class="sub">Estamos muito felizes em celebrar esse momento com você 💙</p>
 
-            <label>Vai comparecer?</label>
-            <select name="presenca" id="presenca" required>
-                <option value="">Selecione...</option>
-                <option value="sim">Sim</option>
-                <option value="nao">Não</option>
-            </select>
+    <form id="rsvpForm" enctype="multipart/form-data">
 
-            <div id="areaAcompanhantes" style="display:none;">
-                <h3>Acompanhantes</h3>
-                <div id="listaAcompanhantes"></div>
-                <button type="button" id="addAcompanhante">Adicionar Acompanhante</button>
-            </div>
+        <label>Seu Nome Completo</label>
+        <input type="text" name="nome" required>
 
-            <div class="file-area" id="fotoArea" style="display:none;">
-                <label>Foto Obrigatória:</label>
-                <input type="file" name="foto" id="foto" accept="image/*" required />
-            </div>
+        <label>Telefone</label>
+        <input type="text" name="telefone" placeholder="(DDD) 99999-9999" required>
 
-            <button type="submit">Enviar Confirmação</button>
-        </form>
+        <label>Você irá ao casamento?</label>
+        <select name="presenca" id="presenca" required>
+            <option value="">Selecione...</option>
+            <option value="sim">Sim, confirmo presença</option>
+            <option value="nao">Infelizmente não poderei ir</option>
+        </select>
 
-        <p id="mensagem"></p>
-    </div>
+        <div id="fotoArea" class="file-area" style="display:none;">
+            <label>Foto Obrigatória</label>
+            <input type="file" name="foto" id="foto" accept="image/*" required>
+        </div>
 
-    <script>
-        const presenca = document.getElementById('presenca');
-        const areaAcompanhantes = document.getElementById('areaAcompanhantes');
-        const listaAcompanhantes = document.getElementById('listaAcompanhantes')
+        <div id="areaAcompanhantes" class="acompanhantes-area" style="display:none;">
+            <h3 style="margin-top:0;font-family:'Playfair Display',serif; font-size:22px;">Acompanhantes</h3>
+            <div id="listaAcompanhantes"></div>
+            <button type="button" id="addAcompanhante">Adicionar Acompanhante</button>
+        </div>
+
+        <button type="submit">Enviar Confirmação</button>
+    </form>
+
+    <p id="mensagem"></p>
+</div>
+
+<script>
+const presenca = document.getElementById('presenca');
+const fotoArea = document.getElementById('fotoArea');
+const areaAcompanhantes = document.getElementById('areaAcompanhantes');
+const listaAcompanhantes = document.getElementById('listaAcompanhantes');
+const addAcompanhante = document.getElementById('addAcompanhante');
+
+presenca.addEventListener('change', () => {
+    if (presenca.value === 'sim') {
+        fotoArea.style.display = 'block';
+        areaAcompanhantes.style.display = 'block';
+        document.getElementById('foto').required = true;
+    } else {
+        fotoArea.style.display = 'none';
+        areaAcompanhantes.style.display = 'none';
+        document.getElementById('foto').required = false;
+    }
+});
+
+addAcompanhante.addEventListener('click', () => {
+    const box = document.createElement('div');
+    box.className = 'acompanhante-box';
+
+    box.innerHTML = `
+        <label>Nome do Acompanhante</label>
+        <input type="text" name="acompanhantes[]" required>
+        <button type="button" class="remove-btn" onclick="this.parentElement.remove()">Remover</button>
+    `;
+
+    listaAcompanhantes.appendChild(box);
+});
+
+document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const response = await fetch('send_rsvp.php', { method: 'POST', body: formData });
+    const result = await response.text();
+    document.getElementById('mensagem').innerHTML = result;
+});
+    
