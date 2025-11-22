@@ -1,191 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Confirmar Presença — Marcos ♥ Marieli</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Presença – MEM2026</title>
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: #3D3D3D;
-            background-color: #C7D3E6;
-            background-image: url('assets/img/rosa-textura.png');
-            background-size: cover;
-            background-repeat: repeat;
-            background-attachment: fixed;
+            font-family: "Didot", serif;
+            background: url('assets/textura-rosas.png') center/cover no-repeat fixed;
+            color: #1a1a1a;
         }
 
         .container {
-            max-width: 700px;
-            margin: auto;
-            padding: 40px 20px;
-            text-align: center;
+            max-width: 780px;
+            margin: 40px auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 14px;
+            box-shadow: 0 5px 28px rgba(0, 0, 0, 0.15);
         }
 
         .brasao {
-            width: 130px;
+            width: 180px;
             margin: 0 auto 20px auto;
-            opacity: 0.92;
+            display: block;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            margin-bottom: 5px;
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            margin-top: 0;
+            text-align: center;
+            font-size: 2.6rem;
+            color: #3a4c7c; /* Azul Serenity */
+            margin-bottom: 10px;
             letter-spacing: 1px;
-            color: #444;
         }
 
-        .divider {
-            width: 80px;
-            height: 2px;
-            background-color: #D2C29D;
-            margin: 20px auto 35px auto;
-            border-radius: 3px;
+        p.descricao {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
         }
 
-        form {
-            background: rgba(255, 255, 255, 0.65);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.06);
-            backdrop-filter: blur(2px);
+        label {
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
         }
 
-        input, textarea {
-            width: 95%;
+        input, textarea, select {
+            width: 100%;
             padding: 12px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            font-size: 15px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        input[type="file"] {
-            border: none;
-            padding: 5px;
+            border: 1px solid #c7c7c7;
+            border-radius: 8px;
+            font-size: 1rem;
         }
 
         button {
-            margin-top: 15px;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            background-color: #3D3D3D;
+            width: 100%;
+            padding: 14px;
+            margin-top: 28px;
+            background: #3a4c7c; /* Azul Serenity */
             color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
             transition: 0.3s;
+            letter-spacing: 1px;
         }
 
         button:hover {
-            background-color: #D2C29D;
-            color: #2f2f2f;
+            background: #2e3c63;
         }
 
-        a.voltar {
-            display: inline-block;
-            margin-top: 20px;
-            color: #2f2f2f;
-            text-decoration: none;
-            font-weight: 500;
+        .acompanhantes-container {
+            display: none;
+            margin-top: 10px;
         }
     </style>
+
+    <script>
+        function atualizarAcompanhantes() {
+            const qtd = document.getElementById("acompanhantes").value;
+            const container = document.getElementById("listaAcompanhantes");
+            
+            container.innerHTML = ""; 
+            if (qtd > 0) {
+                document.querySelector(".acompanhantes-container").style.display = "block";
+
+                for (let i = 1; i <= qtd; i++) {
+                    container.innerHTML += `
+                        <label>Nome do acompanhante ${i}:</label>
+                        <input type="text" name="acompanhante_${i}" required>
+                    `;
+                }
+            } else {
+                document.querySelector(".acompanhantes-container").style.display = "none";
+            }
+        }
+
+        function enviarEmail() {
+            const nome = document.getElementById("nome").value;
+            const email = document.getElementById("email").value;
+            const tel = document.getElementById("telefone").value;
+            const qtd = document.getElementById("acompanhantes").value;
+            const obs = document.getElementById("obs").value;
+
+            let listaNomes = "";
+            const container = document.getElementById("listaAcompanhantes");
+
+            container.querySelectorAll("input").forEach((input, index) => {
+                listaNomes += `Acompanhante ${index + 1}: ${input.value}\n`;
+            });
+
+            const corpo = 
+`Confirmação de Presença
+-----------------------
+Nome: ${nome}
+E-mail: ${email}
+Telefone: ${tel}
+
+Quantidade de acompanhantes: ${qtd}
+${listaNomes}
+
+Observações:
+${obs}
+
+IMPORTANTE:
+Por favor, anexe uma foto da família ao enviar este e-mail.
+`;
+
+            location.href = `mailto:marcosemaricasamento@gmail.com?subject=Confirmação de Presença – ${nome}&body=${encodeURIComponent(corpo)}`;
+        }
+    </script>
 </head>
 
 <body>
     <div class="container">
 
-        <!-- Brasão -->
-        <img src="assets/img/brasao.png" class="brasao" alt="Brasão">
+        <img src="assets/brasao.png" alt="Brasão" class="brasao">
 
-        <h1>Confirmar Presença</h1>
-        <h2>Marcos ♥ Marieli — 16.05.2026</h2>
+        <h1>Confirmação de Presença</h1>
+        <p class="descricao">Estamos muito felizes por compartilhar este momento com você. Preencha os dados abaixo:</p>
 
-        <div class="divider"></div>
+        <label>Nome Completo:</label>
+        <input type="text" id="nome" required>
 
-        <!-- Formulário -->
-        <form id="rsvpForm" enctype="multipart/form-data">
-            <input type="text" id="nome" placeholder="Seu nome completo" required>
-            <input type="number" id="acompanhantes" placeholder="Qtd. de acompanhantes" min="0" required>
-            <input type="tel" id="telefone" placeholder="Telefone (WhatsApp)" required>
+        <label>E-mail:</label>
+        <input type="email" id="email" required>
 
-            <label style="font-weight:600; margin-top:10px; display:block;">Foto da Família (opcional):</label>
-            <input type="file" id="foto" accept="image/*">
+        <label>Telefone:</label>
+        <input type="tel" id="telefone" required>
 
-            <textarea id="mensagem" placeholder="Mensagem (opcional)" rows="4"></textarea>
+        <label>Número de acompanhantes:</label>
+        <select id="acompanhantes" onchange="atualizarAcompanhantes()">
+            <option value="0">Nenhum</option>
+            <option value="1">1 acompanhante</option>
+            <option value="2">2 acompanhantes</option>
+            <option value="3">3 acompanhantes</option>
+            <option value="4">4 acompanhantes</option>
+        </select>
 
-            <button type="submit">Enviar Confirmação</button>
-        </form>
+        <div class="acompanhantes-container">
+            <div id="listaAcompanhantes"></div>
+        </div>
 
-        <a href="index.html" class="voltar">← Voltar ao início</a>
+        <label>Envio da foto da família (obrigatório):</label>
+        <input type="file" accept="image/*" required>
+
+        <label>Observações:</label>
+        <textarea id="obs" rows="5"></textarea>
+
+        <button onclick="enviarEmail()">Enviar Confirmação</button>
     </div>
-
-    <script>
-        document.getElementById("rsvpForm").addEventListener("submit", async function(e){
-            e.preventDefault();
-
-            const nome = document.getElementById("nome").value;
-            const acompanhantes = document.getElementById("acompanhantes").value;
-            const telefone = document.getElementById("telefone").value;
-            const mensagem = document.getElementById("mensagem").value;
-            const foto = document.getElementById("foto").files[0];
-
-            // --------------------------
-            // 1) ENVIO PARA E-MAIL
-            // --------------------------
-            let corpoEmail = 
-`Nova confirmação de presença:
-
-Nome: ${nome}
-Acompanhantes: ${acompanhantes}
-Telefone: ${telefone}
-Mensagem: ${mensagem || "Nenhuma mensagem"}
-
-(Se houver foto, ela estará anexada pelo convidado.)`;
-
-            const mailtoLink = `mailto:marcosemaricasamento@gmail.com?subject=Nova confirmação de presença&body=${encodeURIComponent(corpoEmail)}`;
-            window.location.href = mailtoLink;
-
-            // --------------------------
-            // 2) WHATSAPP (OPCIONAL)
-            // Basta inserir seu número no formato internacional:
-            // Exemplo: const numero = "+5585999998888";
-            // --------------------------
-            const numero = ""; // <- quando quiser ativar, coloque seu número aqui
-
-            if (numero !== "") {
-                const msgWpp =
-`*Nova confirmação de presença:*
-
-• *Nome:* ${nome}
-• *Acompanhantes:* ${acompanhantes}
-• *Telefone:* ${telefone}
-• *Mensagem:* ${mensagem || "Nenhuma"}
-
-(Se houve foto, o convidado anexou no formulário.)`;
-
-                const wppUrl = `https://wa.me/${numero.replace(/\D/g, "")}?text=${encodeURIComponent(msgWpp)}`;
-                window.open(wppUrl, "_blank");
-            }
-
-            alert("Presença confirmada com sucesso! 💙\nObrigado por celebrar com Marcos & Marieli.");
-
-            document.getElementById("rsvpForm").reset();
-        });
-    </script>
-
 </body>
 </html>
