@@ -3,136 +3,120 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marcos ♥ Marieli — 16.05.2026</title>
+    <title>Marcos ♥ Marieli — MEM 2026</title>
 
+    <!-- Fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: #3D3D3D;
             background-color: #C7D3E6;
             background-image: url('assets/img/rosa-textura.png');
             background-size: cover;
             background-repeat: repeat;
-            background-attachment: fixed;
+            font-family: 'Montserrat', sans-serif;
+            color: #2b2b2b;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: auto;
-            padding: 40px 20px;
             text-align: center;
+            padding: 40px 20px;
         }
 
         .brasao {
-            width: 150px;
-            margin: 0 auto 20px auto;
-            opacity: 0.92;
+            width: 220px; /* tamanho padronizado */
+            opacity: 0.95;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            font-weight: 500;
-            margin: 10px 0 0 0;
-            color: #2b2b2b;
+            font-size: 48px;
+            margin: 10px 0 5px 0;
         }
 
         h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 400;
-            color: #444;
-            margin-top: 5px;
-            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 35px;
         }
 
-        .divider {
-            width: 80px;
-            height: 2px;
-            background-color: #D2C29D;
-            margin: 25px auto;
-            border-radius: 3px;
+        /* BOTÕES */
+        .menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 30px;
         }
 
-        #countdown {
-            font-size: 20px;
-            margin-top: 20px;
-            font-weight: 500;
-            color: #2f2f2f;
-        }
-
-        .btn {
-            display: inline-block;
-            margin: 22px 12px 0 12px;
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-size: 16px;
+        .menu a {
             text-decoration: none;
+            padding: 12px 28px;
+            background-color: #3D3D3D; /* minimalista elegante */
             color: white;
-            background-color: #3D3D3D;
-            transition: 0.3s;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.3s ease;
         }
 
-        .btn:hover {
+        .menu a:hover {
             background-color: #D2C29D;
-            color: #2f2f2f;
+            color: #2b2b2b;
         }
 
-        @media(max-width: 600px) {
-            h1 { font-size: 32px; }
-            .brasao { width: 120px; }
+        /* MOBILE */
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 38px;
+            }
+            h2 {
+                font-size: 18px;
+            }
+            .menu {
+                gap: 12px;
+            }
+            .menu a {
+                padding: 10px 22px;
+                font-size: 14px;
+            }
+            .brasao {
+                width: 200px;
+            }
         }
     </style>
 </head>
 
 <body>
+
     <div class="container">
 
-        <img src="assets/img/brasao.png" class="brasao" alt="Brasão Marcos e Marieli">
+        <!-- BRASÃO -->
+        <img src="assets/img/brasao.png" class="brasao" alt="Brasão">
 
-        <h1>Marcos ♥ Marieli</h1>
-        <h2>16 • 05 • 2026</h2>
+        <h1>Marcos & Marieli</h1>
+        <h2>16 de Maio de 2026</h2>
 
-        <div class="divider"></div>
-
-        <div id="countdown">Carregando...</div>
-
-            <a href="rsvp.html" class="btn">Confirmar Presença</a>
-            <a href="cerimonia.html" class="btn">Cerimônia</a>
-            <a href="album.html" class="btn">Álbum</a>
-            <a href="manual-dos-padrinhos.html" class="btn"> Manual dos Padrinhos</a>
-            <a href="manual-convidado.html" class="btn">Manual do Convidado</a>
-            <a href="lista-presentes.html" class="btn">Lista de Presentes</a>
-            <a href="sala-da-noiva.html" class="btn">Sala da Noiva</a>
+        <!-- MENU -->
+        <div class="menu">
+            <a href="cerimonia.html">Cerimônia</a>
+            <a href="rsvp.html">RSVP</a>
+            <a href="padrinhos.html">Padrinhos</a>
+            <a href="lista-presentes.html">Lista de Presentes</a>
+            <a href="manual-convidados.html">Manual dos Convidados</a>
+            <a href="album.html">Álbum</a>
+            <a href="sala-noiva.html">Sala da Noiva</a>
+        </div>
 
     </div>
-
-    <script>
-        function atualizarContagem() {
-            const casamento = new Date("May 16, 2026 00:00:00").getTime();
-            const agora = new Date().getTime();
-            const diff = casamento - agora;
-
-            if (diff <= 0) {
-                document.getElementById("countdown").innerHTML = "É HOJE! ❤️";
-                return;
-            }
-
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML =
-                `${dias} dias • ${horas}h • ${minutos}m • ${segundos}s`;
-        }
-
-        setInterval(atualizarContagem, 1000);
-    </script>
 
 </body>
 </html>
