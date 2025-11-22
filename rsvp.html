@@ -1,98 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSVP – MEM2026</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmar Presença — Marcos ♥ Marieli</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="rsvp.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #3D3D3D;
+            background-color: #C7D3E6;
+            background-image: url('assets/img/rosa-textura.png');
+            background-size: cover;
+            background-repeat: repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .brasao {
+            width: 130px;
+            margin: 0 auto 20px auto;
+            opacity: 0.92;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            margin-top: 0;
+            letter-spacing: 1px;
+            color: #444;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background-color: #D2C29D;
+            margin: 20px auto 35px auto;
+            border-radius: 3px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.65);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.06);
+            backdrop-filter: blur(2px);
+        }
+
+        input, textarea {
+            width: 95%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        input[type="file"] {
+            border: none;
+            padding: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            background-color: #3D3D3D;
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #D2C29D;
+            color: #2f2f2f;
+        }
+
+        a.voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2f2f2f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
 </head>
 
 <body>
-    <header class="header">
-        <h1 class="title">Confirmação de Presença</h1>
-        <p class="subtitle">MEM2026</p>
-    </header>
+    <div class="container">
 
-    <main class="container">
+        <!-- Brasão -->
+        <img src="assets/img/brasao.png" class="brasao" alt="Brasão">
 
-        <form id="rsvpForm">
+        <h1>Confirmar Presença</h1>
+        <h2>Marcos ♥ Marieli — 16.05.2026</h2>
 
-            <!-- DADOS BÁSICOS -->
-            <section class="section">
-                <h2 class="section-title">Seus Dados</h2>
+        <div class="divider"></div>
 
-                <label>
-                    Nome completo *
-                    <input type="text" id="nome" name="nome" required>
-                </label>
+        <!-- Formulário -->
+        <form id="rsvpForm" enctype="multipart/form-data">
+            <input type="text" id="nome" placeholder="Seu nome completo" required>
+            <input type="number" id="acompanhantes" placeholder="Qtd. de acompanhantes" min="0" required>
+            <input type="tel" id="telefone" placeholder="Telefone (WhatsApp)" required>
 
-                <label>
-                    E-mail *
-                    <input type="email" id="email" name="email" required>
-                </label>
+            <label style="font-weight:600; margin-top:10px; display:block;">Foto da Família (opcional):</label>
+            <input type="file" id="foto" accept="image/*">
 
-                <label>
-                    Telefone *
-                    <input type="tel" id="telefone" name="telefone" required>
-                </label>
+            <textarea id="mensagem" placeholder="Mensagem (opcional)" rows="4"></textarea>
 
-                <label>
-                    Você irá ao casamento? *
-                    <select id="presenca" name="presenca" required>
-                        <option value="">Selecione...</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-                    </select>
-                </label>
-            </section>
-
-            <!-- ACOMPANHANTES -->
-            <section id="acompanhantesSection" class="section hidden">
-                <h2 class="section-title">Acompanhantes</h2>
-
-                <label>
-                    Quantos acompanhantes?
-                    <input type="number" id="qtdAcompanhantes" min="0" max="5" value="0">
-                </label>
-
-                <div id="acompanhantesContainer"></div>
-            </section>
-
-            <!-- RESTRIÇÕES -->
-            <section class="section">
-                <h2 class="section-title">Restrições Alimentares</h2>
-
-                <label class="checkbox-label">
-                    <input type="checkbox" id="temRestricoes"> Possuo restrições alimentares
-                </label>
-
-                <textarea id="restricoesTexto" class="hidden" placeholder="Descreva suas restrições..."></textarea>
-            </section>
-
-            <!-- MENSAGEM AO CASAL -->
-            <section class="section">
-                <h2 class="section-title">Mensagem ao casal</h2>
-                <textarea id="mensagem" placeholder="Escreva algo especial (opcional)..."></textarea>
-            </section>
-
-            <!-- RESUMO -->
-            <section id="resumoSection" class="section hidden">
-                <h2 class="section-title">Resumo da Confirmação</h2>
-                <div id="resumoConteudo"></div>
-            </section>
-
-            <button type="button" id="btnResumo" class="btn">Visualizar Resumo</button>
-            <button type="submit" id="btnEnviar" class="btn hidden">Enviar Confirmação</button>
-
-            <p id="status" class="status"></p>
-
+            <button type="submit">Enviar Confirmação</button>
         </form>
-    </main>
 
-    <script src="rsvp.js"></script>
+        <a href="index.html" class="voltar">← Voltar ao início</a>
+    </div>
+
+    <script>
+        document.getElementById("rsvpForm").addEventListener("submit", async function(e){
+            e.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const acompanhantes = document.getElementById("acompanhantes").value;
+            const telefone = document.getElementById("telefone").value;
+            const mensagem = document.getElementById("mensagem").value;
+            const foto = document.getElementById("foto").files[0];
+
+            // --------------------------
+            // 1) ENVIO PARA E-MAIL
+            // --------------------------
+            let corpoEmail = 
+`Nova confirmação de presença:
+
+Nome: ${nome}
+Acompanhantes: ${acompanhantes}
+Telefone: ${telefone}
+Mensagem: ${mensagem || "Nenhuma mensagem"}
+
+(Se houver foto, ela estará anexada pelo convidado.)`;
+
+            const mailtoLink = `mailto:marcosemaricasamento@gmail.com?subject=Nova confirmação de presença&body=${encodeURIComponent(corpoEmail)}`;
+            window.location.href = mailtoLink;
+
+            // --------------------------
+            // 2) WHATSAPP (OPCIONAL)
+            // Basta inserir seu número no formato internacional:
+            // Exemplo: const numero = "+5585999998888";
+            // --------------------------
+            const numero = ""; // <- quando quiser ativar, coloque seu número aqui
+
+            if (numero !== "") {
+                const msgWpp =
+`*Nova confirmação de presença:*
+
+• *Nome:* ${nome}
+• *Acompanhantes:* ${acompanhantes}
+• *Telefone:* ${telefone}
+• *Mensagem:* ${mensagem || "Nenhuma"}
+
+(Se houve foto, o convidado anexou no formulário.)`;
+
+                const wppUrl = `https://wa.me/${numero.replace(/\D/g, "")}?text=${encodeURIComponent(msgWpp)}`;
+                window.open(wppUrl, "_blank");
+            }
+
+            alert("Presença confirmada com sucesso! 💙\nObrigado por celebrar com Marcos & Marieli.");
+
+            document.getElementById("rsvpForm").reset();
+        });
+    </script>
+
 </body>
 </html>
