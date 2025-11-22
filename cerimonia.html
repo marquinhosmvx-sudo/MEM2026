@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cerimônia — Marcos ♥ Marieli</title>
 
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -13,12 +12,12 @@
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            color: #3D3D3D;
-            background-color: #C7D3E6; /* Serenity */
+            background-color: #C7D3E6;
             background-image: url('assets/img/rosa-textura.png');
             background-size: cover;
             background-repeat: repeat;
             background-attachment: fixed;
+            color: #3D3D3D;
         }
 
         .container {
@@ -29,47 +28,70 @@
         }
 
         .brasao {
-            width: 150px;
-            margin: 0 auto 20px auto;
-            opacity: 0.92;
+            width: 190px; /* AUMENTADO */
+            opacity: 0.93;
+            margin: 10px auto 25px auto;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 40px;
+            font-size: 42px;
             margin-bottom: 10px;
             color: #2b2b2b;
         }
 
+        .divider {
+            width: 90px;
+            height: 2px;
+            background-color: #D2C29D;
+            margin: 20px auto 35px auto;
+            border-radius: 3px;
+        }
+
+        /* Texto poético híbrido */
+        .texto-poetico {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #2b2b2b;
+            margin-bottom: 40px;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            font-style: italic;
+            padding: 0 10px;
+        }
+
+        /* Mobile: alinhado à esquerda */
+        @media (max-width: 700px) {
+            .texto-poetico {
+                text-align: left;
+                font-size: 17px;
+            }
+        }
+
+        .box {
+            background: rgba(255,255,255,0.68);
+            padding: 25px;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.06);
+            backdrop-filter: blur(3px);
+            text-align: center;
+        }
+
         h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
-            margin-top: 30px;
-            margin-bottom: 5px;
+            font-size: 28px;
+            margin-top: 5px;
+            margin-bottom: 10px;
             color: #2b2b2b;
         }
 
         p {
             font-size: 17px;
             line-height: 1.6;
-            margin: 8px 0;
-        }
-
-        .divider {
-            width: 80px;
-            height: 2px;
-            background-color: #D2C29D;
-            margin: 25px auto;
-            border-radius: 3px;
-        }
-
-        .box {
-            background: rgba(255,255,255,0.65);
-            padding: 25px;
-            margin-top: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(3px);
-            box-shadow: 0 0 20px rgba(0,0,0,0.06);
+            margin: 7px 0;
         }
 
         .btn-maps {
@@ -81,6 +103,7 @@
             border-radius: 30px;
             text-decoration: none;
             transition: 0.3s;
+            font-size: 15px;
         }
 
         .btn-maps:hover {
@@ -90,9 +113,9 @@
 
         a.voltar {
             display: inline-block;
-            margin-top: 30px;
-            color: #2f2f2f;
+            margin-top: 35px;
             text-decoration: none;
+            color: #2b2b2b;
             font-weight: 500;
         }
     </style>
@@ -101,17 +124,25 @@
 <body>
     <div class="container">
 
-        <!-- Brasão -->
         <img src="assets/img/brasao.png" class="brasao" alt="Brasão">
 
         <h1>Nossa Cerimônia & Recepção</h1>
 
         <div class="divider"></div>
 
-        <!-- Mensagem Romântica Minimalista -->
-        <p style="font-style: italic; font-size: 18px; margin-bottom: 30px;">
-            “Um momento preparado com amor, fé e gratidão.  
-            Será uma alegria viver este dia tão especial ao seu lado.”
+        <!-- TEXTO POÉTICO EXCLUSIVO -->
+        <p class="texto-poetico">
+            “Nos vimos pela primeira vez na casa de Deus, num daqueles encontros silenciosos que parecem simples,
+            mas carregam um destino inteiro por trás. Foi ela quem deu o primeiro passo — uma mensagem enviada
+            num domingo às 22h — e foi ali, sem que soubéssemos, que Deus começou a costurar nossas histórias.
+            Começamos de maneira despretensiosa, meio inseguros, construindo o amor pela razão, tijolo por tijolo,
+            com conversa, paciência e entrega. Com o tempo, descobrimos que nosso laço tinha algo maior do que nós:
+            cumplicidade que sustenta, paciência que acolhe, amizade que cura e resiliência que atravessa qualquer
+            tempestade. Anos antes de conhecê-la, eu sonhei que me casaria com ela. Hoje entendo: não era um mistério,
+            era Deus sussurrando o futuro que estava por vir. O que nos torna únicos é a vontade de sermos melhores
+            um para o outro, a doação mútua, o cuidado que vira gesto e o respeito que estrutura o caminho.
+            Que esta cerimônia seja testemunha daquilo que Deus escreveu antes de nós, e da beleza de dois corações
+            que escolheram caminhar juntos — não por acaso, mas por propósito.”
         </p>
 
         <!-- CERIMÔNIA -->
