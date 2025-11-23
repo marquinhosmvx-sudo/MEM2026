@@ -1,1 +1,230 @@
-/* CSS final será adicionado aqui */
+/* =========================================================
+   MEM2026 – Estilo intimista, romântico, elegante e emocional
+   Tipografia premium + textura serenity + hero focado nas alianças
+   ========================================================= */
+
+/* ------------------ VARIÁVEIS ------------------ */
+:root {
+  --cor-serenity: #A7C7E7;
+  --cor-serenity-escuro: #7AA4CF;
+
+  --cor-fundo: #F7EFE7;
+
+  --cor-marrom: #8C6F5F;
+  --cor-preto-quente: #2B2624;
+
+  --fonte-titulo: 'Cormorant Garamond', serif;
+  --fonte-subtitulo: 'Playfair Display', serif;
+  --fonte-texto: 'EB Garamond', serif;
+
+  --shadow-suave: 0 10px 22px rgba(0,0,0,0.08);
+}
+
+/* ------------------ RESET ------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   TEXTURA GLOBAL – serenity um pouco mais clara
+   ========================================================= */
+body {
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0.35)
+    ),
+    url('../assets/rosa-textura.png');
+
+  background-size: 520px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+
+  color: var(--cor-preto-quente);
+  font-family: var(--fonte-texto);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   HERO – foco nas alianças
+   ========================================================= */
+.hero {
+  position: relative;
+  height: 88vh;
+  background: url('../assets/banner.jpg') no-repeat;
+  background-size: cover;
+  background-position: 55% 62%; /* foco nas alianças */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  color: white;
+}
+
+.hero-title {
+  font-family: var(--fonte-titulo);
+  font-size: 4rem;
+  letter-spacing: -1px;
+}
+
+.hero-date {
+  font-family: var(--fonte-subtitulo);
+  color: var(--cor-serenity);
+  font-size: 1.3rem;
+  margin-top: 10px;
+}
+
+/* ------------------ BOTÕES ------------------ */
+.button-primary {
+  background-color: var(--cor-serenity);
+  color: var(--cor-preto-quente);
+  padding: 14px 28px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: var(--fonte-texto);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  display: inline-block;
+  transition: 0.25s ease;
+}
+
+.button-primary:hover {
+  background-color: var(--cor-serenity-escuro);
+  transform: translateY(-3px);
+}
+
+/* =========================================================
+   BRASÃO
+   ========================================================= */
+.brasao-section {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.brasao-home {
+  width: 220px;
+  opacity: 0.92;
+}
+
+/* =========================================================
+   FRASE POÉTICA
+   ========================================================= */
+.frase-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.frase {
+  font-family: var(--fonte-subtitulo);
+  font-size: 1.5rem;
+  color: var(--cor-marrom);
+  max-width: 680px;
+  margin: auto;
+}
+
+/* =========================================================
+   CONTAGEM REGRESSIVA
+   ========================================================= */
+.contador {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.contador-box {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contador-box div {
+  background: rgba(167,199,231,0.25);
+  padding: 14px 20px;
+  border-radius: 10px;
+}
+
+.contador-box span {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+.cards {
+  padding: 60px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  width: 290px;
+  padding: 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  text-align: center;
+  color: var(--cor-preto-quente);
+  border: 1px solid var(--cor-serenity);
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-suave);
+}
+
+.card h3 {
+  font-family: var(--fonte-subtitulo);
+  font-size: 1.3rem;
+}
+
+/* =========================================================
+   CTA FINAL
+   ========================================================= */
+.cta-final {
+  text-align: center;
+  padding: 60px 20px 90px;
+}
+
+.cta-final h2 {
+  font-family: var(--fonte-subtitulo);
+  font-size: 1.7rem;
+  color: var(--cor-marrom);
+  max-width: 600px;
+  margin: auto;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+@media (max-width: 480px) {
+
+  .hero {
+      background-position: 58% 68%;
+      height: 78vh;
+  }
+
+  .hero-title {
+      font-size: 2.7rem;
+  }
+
+  .brasao-home {
+      width: 160px;
+  }
+
+}
