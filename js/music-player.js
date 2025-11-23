@@ -1,1 +1,1 @@
-// player placeholder
+// music player placeholder
