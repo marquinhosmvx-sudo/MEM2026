@@ -90,20 +90,23 @@ h1, h2, h3 {
 .button-primary {
   background-color: var(--cor-serenity);
   color: var(--cor-preto-quente);
-  padding: 12px 26px;
-  border-radius: 8px;
+  padding: 14px 28px;
+  border-radius: 10px;
   text-decoration: none;
   font-family: var(--fonte-texto);
   font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
   display: inline-block;
   transition: all 0.25s ease;
+  border: 1px solid rgba(255,255,255,0.45);
 }
 
 .button-primary:hover {
   background-color: var(--cor-serenity-escuro);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
 }
-
 /* =========================================================
    HERO – Capa cinematográfica
    ========================================================= */
@@ -213,23 +216,20 @@ h1, h2, h3 {
    CARDS – Botões de seções
    ========================================================= */
 
-.cards {
-  padding: 60px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: center;
-}
-
 .card {
   background: var(--cor-branco);
-  width: 290px;
+  width: 280px;
   padding: 28px;
   border-radius: 12px;
   text-decoration: none;
   color: var(--cor-preto-quente);
-  transition: transform .2s ease, box-shadow .2s ease;
-  border: 2px solid var(--cor-serenity);
+  transition: all 0.25s ease;
+  border: 1px solid var(--cor-serenity);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-suave);
 }
 
 .card:hover {
