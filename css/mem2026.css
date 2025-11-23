@@ -1,6 +1,6 @@
 /* =========================================================
-   MEM2026 – Estilo íntimo, romântico, elegante e emocional
-   Overlay médio + textura média + paleta Serenity
+   MEM2026 – Estilo intimista, romântico, elegante e emocional
+   Versão completa com foco nas alianças + textura azul
    ========================================================= */
 
 /* ------------------ VARIÁVEIS GLOBAIS ------------------ */
@@ -36,7 +36,7 @@
 }
 
 /* =========================================================
-   TEXTURA GLOBAL
+   TEXTURA GLOBAL (AZUL MEDIANO)
    ========================================================= */
 body {
   background:
@@ -85,7 +85,7 @@ h1, h2, h3 {
 }
 
 /* =========================================================
-   BOTÕES
+   BOTÕES – minimalistas e elegantes
    ========================================================= */
 .button-primary {
   background-color: var(--cor-serenity);
@@ -107,17 +107,18 @@ h1, h2, h3 {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.18);
 }
-/* =========================================================
-   HERO – Capa cinematográfica
-   ========================================================= */
 
+/* =========================================================
+   HERO – foco nas alianças
+   ========================================================= */
 .hero {
   position: relative;
   height: 88vh;
-  background: 
-  url('../assets/banner.jpg') no-repeat;
-background-size: cover;
-background-position: 55% 62%;
+  background: url('../assets/banner.jpg') no-repeat;
+  background-size: cover;
+
+  /* Ajuste fino: foco nas alianças */
+  background-position: 55% 62%;
 
   display: flex;
   align-items: center;
@@ -171,7 +172,6 @@ background-position: 55% 62%;
 /* =========================================================
    FRASE POÉTICA
    ========================================================= */
-
 .frase-section {
   padding: 60px 20px;
   text-align: center;
@@ -189,7 +189,6 @@ background-position: 55% 62%;
 /* =========================================================
    CONTAGEM REGRESSIVA
    ========================================================= */
-
 .contador {
   text-align: center;
   padding: 40px 20px;
@@ -216,8 +215,15 @@ background-position: 55% 62%;
 }
 
 /* =========================================================
-   CARDS – Botões de seções
+   CARDS – somente títulos
    ========================================================= */
+.cards {
+  padding: 60px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
 
 .card {
   background: var(--cor-branco);
@@ -235,20 +241,14 @@ background-position: 55% 62%;
   box-shadow: var(--shadow-suave);
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-suave);
-}
-
 .card h3 {
   font-family: var(--fonte-subtitulo);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 /* =========================================================
    CTA FINAL
    ========================================================= */
-
 .cta-final {
   text-align: center;
   padding: 60px 20px 90px;
@@ -257,8 +257,7 @@ background-position: 55% 62%;
 .cta-final h2 {
   margin-bottom: 25px;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
 }
 
 /* =========================================================
@@ -266,12 +265,11 @@ background-position: 55% 62%;
    ========================================================= */
 @media (max-width: 480px) {
 
-  /* textura mais suave */
   body {
     background:
       linear-gradient(
-        rgba(247, 239, 231, 0.92),
-        rgba(247, 239, 231, 0.92)
+        rgba(247, 239, 231, 0.30),
+        rgba(247, 239, 231, 0.30)
       ),
       url('../assets/rosa-textura.png');
 
@@ -282,7 +280,9 @@ background-position: 55% 62%;
 
   .hero {
       height: 75vh;
-      padding: 0 18px;
+
+      /* foco mais baixo para mobile */
+      background-position: 58% 68%;
   }
 
   .hero-title {
