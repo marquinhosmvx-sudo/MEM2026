@@ -228,3 +228,82 @@ body {
   }
 
 }
+/* =========================================================
+   HERO INTERNO – páginas internas
+   ========================================================= */
+.hero-interno {
+    height: 45vh;
+    background: url('../assets/banner.jpg') no-repeat;
+    background-size: cover;
+    background-position: 55% 60%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay-interno {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.50);
+}
+
+.titulo-interno {
+    position: relative;
+    z-index: 5;
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    letter-spacing: -1px;
+}
+
+/* =========================================================
+   CONTEÚDO INTERNO
+   ========================================================= */
+.conteudo-interno {
+    max-width: 780px;
+    margin: auto;
+    padding: 60px 20px 100px;
+}
+
+.frase-interna {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--cor-marrom);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bloco {
+    margin-bottom: 50px;
+}
+
+.sub {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--cor-preto-quente);
+    margin-bottom: 12px;
+}
+
+.texto {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--cor-preto-quente);
+    line-height: 1.5;
+}
+
+/* MAPAS */
+.mapa {
+    margin-top: 20px;
+    width: 100%;
+    height: 260px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(167,199,231,0.25);
+}
+
+.voltar {
+    text-align: center;
+    margin-top: 40px;
+}
+
