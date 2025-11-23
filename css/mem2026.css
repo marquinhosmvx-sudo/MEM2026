@@ -114,8 +114,11 @@ h1, h2, h3 {
 .hero {
   position: relative;
   height: 88vh;
-  background:
-    url('../assets/banner.jpg') center/cover no-repeat;
+  background: 
+  url('../assets/banner.jpg') no-repeat;
+background-size: cover;
+background-position: 55% 62%;
+
   display: flex;
   align-items: center;
   justify-content: center;
