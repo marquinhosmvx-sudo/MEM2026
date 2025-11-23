@@ -223,6 +223,10 @@ h1, h2, h3 {
       padding: 10px 14px;
       min-width: 60px;
   }
+.brasao-home {
+    width: 160px;
+}
+
 
   .contador-box span {
       font-size: 1.6rem;
