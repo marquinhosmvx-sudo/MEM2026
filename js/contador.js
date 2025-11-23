@@ -1,4 +1,4 @@
-const dataAlvo = new Date("2026-06-20T16:00:00").getTime();
+const dataAlvo = new Date("2026-05-20T14:15:00").getTime();
 
 setInterval(() => {
     const agora = new Date().getTime();
