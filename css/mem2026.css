@@ -41,12 +41,12 @@
 body {
   background:
     linear-gradient(
-      rgba(247, 239, 231, 0.85),
-      rgba(247, 239, 231, 0.85)
+      rgba(247, 239, 231, 0.40),
+      rgba(247, 239, 231, 0.40)
     ),
     url('../assets/rosa-textura.png');
 
-  background-size: 650px;
+  background-size: 550px;
   background-attachment: fixed;
   background-position: center;
   background-repeat: repeat;
