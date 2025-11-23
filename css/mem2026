@@ -237,3 +237,15 @@ h1, h2, h3 {
       font-size: 1.2rem;
   }
 }
+/* BRASÃO CENTRALIZADO */
+.brasao-section {
+    text-align: center;
+    padding: 40px 0 10px;
+}
+
+.brasao-home {
+    width: 220px;
+    height: auto;
+    opacity: 0.95;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+}
