@@ -1,0 +1,46 @@
+:root {
+  --cor-fundo: #F7EFE7;
+  --cor-nude: #ECD9D0;
+  --cor-taupe: #D5C4B8;
+
+  --cor-marrom: #8C6F5F;
+  --cor-chocolate: #5A4538;
+  --cor-preto-quente: #2B2624;
+
+  --cor-dourado: #C8A877;
+
+  /* Azul Serenity */
+  --cor-serenity: #A7C7E7;
+  --cor-serenity-escuro: #7AA4CF;
+
+  --cor-branco: #FFFFFF;
+
+  --fonte-titulo: 'Cormorant Garamond', serif;
+  --fonte-subtitulo: 'Playfair Display', serif;
+  --fonte-texto: 'Inter', sans-serif;
+}
+
+/* Botões primários agora usam Serenity */
+.button-primary {
+  background-color: var(--cor-serenity);
+  color: var(--cor-preto-quente);
+  padding: 12px 26px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: var(--fonte-texto);
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.button-primary:hover {
+  background-color: var(--cor-serenity-escuro);
+}
+
+/* Estruturas que podem usar Serenity como detalhe */
+.border-serenity {
+  border: 2px solid var(--cor-serenity);
+}
+
+.bg-serenity-soft {
+  background-color: rgba(167, 199, 231, 0.15);
+}
