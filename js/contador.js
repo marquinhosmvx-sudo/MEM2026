@@ -1,5 +1,5 @@
 // DATA DA CERIMÔNIA
-const dataCasamento = new Date("2026-05-16T16:00:00");
+const dataCasamento = new Date("2026-05-16T14:15:00");
 
 // ATUALIZAÇÃO A CADA SEGUNDO
 setInterval(() => {
