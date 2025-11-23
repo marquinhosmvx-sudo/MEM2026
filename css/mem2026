@@ -1,6 +1,6 @@
 /* =========================================================
-   MEM2026 – Identidade Visual Intimista, Romântica, Elegante e Emocional
-   Com o Azul Serenity como destaque
+   MEM2026 – Estilo íntimo, romântico, elegante e emocional
+   Com Azul Serenity + textura + brasão
    ========================================================= */
 
 /* ------------------ VARIÁVEIS ------------------ */
@@ -25,9 +25,9 @@
   --fonte-subtitulo: 'Playfair Display', serif;
   --fonte-texto: 'Inter', sans-serif;
 
-  /* Sombra elegante */
   --shadow-suave: 0 10px 22px rgba(0,0,0,0.08);
 }
+
 
 /* ------------------ RESET ------------------ */
 * {
@@ -36,15 +36,33 @@
   box-sizing: border-box;
 }
 
+
+/* =========================================================
+   TEXURA GLOBAL
+   ========================================================= */
+
 body {
-  background: var(--cor-fundo);
+  background:
+    linear-gradient(
+      rgba(247, 239, 231, 0.92),
+      rgba(247, 239, 231, 0.92)
+    ),
+    url('../assets/rosa-textura.png');
+  
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+
   color: var(--cor-preto-quente);
   font-family: var(--fonte-texto);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
+
 /* ------------------ ANIMAÇÕES ------------------ */
+
 .fade-in {
   opacity: 0;
   animation: fadeIn 1.2s ease forwards;
@@ -54,7 +72,9 @@ body {
   to { opacity: 1; }
 }
 
+
 /* ------------------ TIPOGRAFIA ------------------ */
+
 h1, h2, h3 {
   font-family: var(--fonte-titulo);
   letter-spacing: -0.5px;
@@ -67,189 +87,9 @@ h1, h2, h3 {
   font-size: 1.6rem;
 }
 
+
 /* ------------------ BOTÕES ------------------ */
+
 .button-primary {
   background-color: var(--cor-serenity);
-  color: var(--cor-preto-quente);
-  padding: 12px 26px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-family: var(--fonte-texto);
-  font-weight: 500;
-  display: inline-block;
-  transition: all 0.25s ease;
-  border: none;
-}
-
-.button-primary:hover {
-  background-color: var(--cor-serenity-escuro);
-  transform: translateY(-3px);
-}
-
-/* ------------------ HERO ------------------ */
-
-.hero {
-    background: linear-gradient(
-        rgba(43, 38, 36, 0.55),
-        rgba(43, 38, 36, 0.55)
-    ),
-    url('../assets/banner.jpg') center/cover no-repeat;
-    height: 88vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.hero-content {
-    color: var(--cor-branco);
-}
-
-.hero-title {
-    font-family: var(--fonte-titulo);
-    font-size: 3.8rem;
-    margin-bottom: 10px;
-    color: var(--cor-branco);
-}
-
-.hero-date {
-    font-family: var(--fonte-subtitulo);
-    color: var(--cor-serenity);
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-}
-
-.hero-btn { margin-top: 15px; }
-
-/* ------------------ FRASE ------------------ */
-.frase-section {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.frase {
-  font-family: var(--fonte-subtitulo);
-  font-size: 1.4rem;
-  color: var(--cor-marrom);
-  max-width: 680px;
-  margin: auto;
-  line-height: 1.5;
-  padding: 0 10px;
-}
-
-/* ------------------ CONTADOR ------------------ */
-.contador {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.contador-box {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-top: 15px;
-}
-
-.contador-box div {
-  background: rgba(167,199,231,0.18);
-  padding: 14px 20px;
-  border-radius: 10px;
-  min-width: 75px;
-}
-
-.contador-box span {
-  font-size: 2rem;
-  font-family: var(--fonte-titulo);
-  color: var(--cor-preto-quente);
-}
-
-/* ------------------ CARDS ------------------ */
-.cards {
-  padding: 60px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: center;
-}
-
-.card {
-  background: var(--cor-branco);
-  width: 290px;
-  padding: 28px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: var(--cor-preto-quente);
-  transition: transform .2s ease, box-shadow .2s ease;
-  border: 2px solid var(--cor-serenity);
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-suave);
-}
-
-.card h3 {
-  font-family: var(--fonte-subtitulo);
-  margin-bottom: 8px;
-  color: var(--cor-preto-quente);
-}
-
-/* ------------------ CTA FINAL ------------------ */
-.cta-final {
-  text-align: center;
-  padding: 60px 20px 90px;
-}
-
-.cta-final h2 {
-  margin-bottom: 25px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ------------------ RESPONSIVIDADE ------------------ */
-@media (max-width: 768px) {
-
-  .hero-title {
-      font-size: 2.6rem;
-  }
-
-  .contador-box {
-      gap: 12px;
-  }
-
-  .contador-box div {
-      padding: 10px 14px;
-      min-width: 60px;
-  }
-.brasao-home {
-    width: 160px;
-}
-
-
-  .contador-box span {
-      font-size: 1.6rem;
-  }
-
-  .card {
-      width: 100%;
-      max-width: 360px;
-  }
-
-  .frase {
-      font-size: 1.2rem;
-  }
-}
-/* BRASÃO CENTRALIZADO */
-.brasao-section {
-    text-align: center;
-    padding: 40px 0 10px;
-}
-
-.brasao-home {
-    width: 220px;
-    height: auto;
-    opacity: 0.95;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
-}
+  color: var(--cor
