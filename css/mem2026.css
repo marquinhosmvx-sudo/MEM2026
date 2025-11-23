@@ -47,8 +47,8 @@ body {
       rgba(247, 239, 231, 0.92),
       rgba(247, 239, 231, 0.92)
     ),
-    url('../assets/rosa-textura.png');
-  
+    url('/MEM2026/assets/rosa-textura.png');
+
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
