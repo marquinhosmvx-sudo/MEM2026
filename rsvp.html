@@ -1,5 +1,258 @@
-<!DOCTYPE html><html><head>
-<meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='stylesheet' href='css/mem2026.css'>
-<title>MEM2026</title>
-</head><body><h1>RSVP</h1></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSVP – MEM2026</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;500;600&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mem2026.css">
+
+    <style>
+        .rsvp-container {
+            max-width: 720px;
+            margin: auto;
+            padding: 40px 20px 80px;
+        }
+
+        .rsvp-title {
+            font-family: 'Cormorant Garamond';
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .rsvp-desc {
+            font-family: 'Playfair Display';
+            font-size: 1.3rem;
+            color: var(--cor-marrom);
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Playfair Display';
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #A7C7E7;
+            font-family: 'EB Garamond';
+            font-size: 1rem;
+        }
+
+        /* UPLOAD DE FOTO */
+        .upload-area {
+            border: 2px dashed #A7C7E7;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .upload-area:hover {
+            background: rgba(167, 199, 231, 0.18);
+        }
+
+        #preview {
+            margin-top: 18px;
+            max-width: 100%;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .button-submit {
+            margin-top: 25px;
+            background-color: var(--cor-serenity);
+            padding: 14px 26px;
+            border-radius: 12px;
+            font-family: 'Playfair Display';
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+        }
+
+        .button-submit:hover {
+            background-color: var(--cor-serenity-escuro);
+        }
+
+        .loading {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1rem;
+            font-family: 'EB Garamond';
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            margin-top: 25px;
+            font-family: 'Cormorant Garamond';
+            font-size: 1.8rem;
+            color: var(--cor-marrom);
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero-interno">
+        <div class="overlay-interno"></div>
+        <h1 class="titulo-interno">Confirmação de Presença</h1>
+    </section>
+
+    <div class="rsvp-container fade-in">
+
+        <h2 class="rsvp-title">RSVP</h2>
+        <p class="rsvp-desc">Sua presença torna nosso dia ainda mais especial.</p>
+
+        <form id="rsvpForm">
+
+            <div class="form-group">
+                <label>Nome completo *</label>
+                <input type="text" name="nome" required />
+            </div>
+
+            <div class="form-group">
+                <label>Telefone / WhatsApp *</label>
+                <input type="text" name="telefone" required />
+            </div>
+
+            <div class="form-group">
+                <label>E-mail *</label>
+                <input type="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+                <label>Confirma presença? *</label>
+                <select name="presenca" required>
+                    <option value="">Selecione</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não poderei ir</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Quantidade de acompanhantes *</label>
+                <select name="quantidade" id="quantidade" required>
+                    <option value="0">0 — Irei sozinho</option>
+                    <option value="1">1 acompanhante</option>
+                    <option value="2">2 acompanhantes</option>
+                    <option value="3">3 acompanhantes</option>
+                    <option value="4">4 acompanhantes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Nome dos acompanhantes</label>
+                <textarea name="nomesAcompanhantes" placeholder="Insira os nomes aqui..." rows="3"></textarea>
+            </div>
+
+            <!-- UPLOAD FOTO -->
+            <div class="form-group">
+                <label>Envie uma foto sua ou da família *</label>
+
+                <div class="upload-area" onclick="document.getElementById('foto').click();">
+                    Clique aqui para enviar a foto
+                </div>
+
+                <input type="file" id="foto" accept="image/*" style="display:none;" required />
+
+                <img id="preview" />
+            </div>
+
+            <div class="form-group">
+                <label>Observações</label>
+                <textarea name="observacoes" rows="3"></textarea>
+            </div>
+
+            <button class="button-submit" type="submit">Enviar confirmação</button>
+
+            <div class="loading" id="loading">Enviando, aguarde...</div>
+
+            <div class="success-message" id="successMessage">
+                Obrigado! Sua confirmação foi enviada com sucesso.
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+        const fotoInput = document.getElementById("foto");
+        const preview = document.getElementById("preview");
+
+        fotoInput.addEventListener("change", () => {
+            const file = fotoInput.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.style.display = 'block';
+            }
+        });
+
+        // ENVIO PARA GOOGLE APPS SCRIPT
+        const scriptURL = "https://script.google.com/macros/s/AKfycbz6pLnkfSVQ75dd1y0muMoZ8ML7Blv6ZkYDCifc0G7rB8_tBnNuz3Cqj1L1XSpnK9ZLLA/exec;"
+
+        const form = document.getElementById("rsvpForm");
+        const loading = document.getElementById("loading");
+        const success = document.getElementById("successMessage");
+
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+
+            loading.style.display = "block";
+
+            const file = fotoInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                const base64Foto = reader.result;
+
+                const dados = {
+                    nome: form.nome.value,
+                    telefone: form.telefone.value,
+                    email: form.email.value,
+                    presenca: form.presenca.value,
+                    quantidade: form.quantidade.value,
+                    nomesAcompanhantes: form.nomesAcompanhantes.value,
+                    observacoes: form.observacoes.value,
+                    foto: base64Foto
+                };
+
+                fetch(scriptURL, {
+                    method: "POST",
+                    body: JSON.stringify(dados),
+                })
+                    .then(() => {
+                        loading.style.display = "none";
+                        success.style.display = "block";
+                        form.reset();
+                        preview.style.display = "none";
+                    })
+                    .catch(err => {
+                        loading.innerText = "Erro ao enviar. Tente novamente.";
+                    });
+            };
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+</body>
+
+</html>
