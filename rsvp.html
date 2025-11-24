@@ -7,6 +7,7 @@
     <title>RSVP – MEM2026</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;500;600&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/mem2026.css">
 
     <style>
@@ -53,7 +54,7 @@
             font-size: 1rem;
         }
 
-        /* UPLOAD DE FOTO */
+        /* UPLOAD FOTO */
         .upload-area {
             border: 2px dashed #A7C7E7;
             padding: 30px;
@@ -135,8 +136,8 @@
             </div>
 
             <div class="form-group">
-                <label>E-mail *</label>
-                <input type="email" name="email" required />
+                <label>E-mail (opcional)</label>
+                <input type="email" name="email" />
             </div>
 
             <div class="form-group">
@@ -160,7 +161,7 @@
             </div>
 
             <div class="form-group">
-                <label>Nome dos acompanhantes</label>
+                <label>Nomes dos acompanhantes</label>
                 <textarea name="nomesAcompanhantes" placeholder="Insira os nomes aqui..." rows="3"></textarea>
             </div>
 
@@ -205,8 +206,7 @@
             }
         });
 
-        // ENVIO PARA GOOGLE APPS SCRIPT
-        const scriptURL = "https://script.google.com/macros/s/AKfycbz6pLnkfSVQ75dd1y0muMoZ8ML7Blv6ZkYDCifc0G7rB8_tBnNuz3Cqj1L1XSpnK9ZLLA/exec;"
+        const scriptURL = "COLE_AQUI_A_URL_DO_SEU_WEBAPP";
 
         const form = document.getElementById("rsvpForm");
         const loading = document.getElementById("loading");
@@ -226,7 +226,7 @@
                 const dados = {
                     nome: form.nome.value,
                     telefone: form.telefone.value,
-                    email: form.email.value,
+                    email: form.email.value || "Não informado",
                     presenca: form.presenca.value,
                     quantidade: form.quantidade.value,
                     nomesAcompanhantes: form.nomesAcompanhantes.value,
