@@ -354,3 +354,36 @@ body {
     color: var(--cor-preto-quente);
     line-height: 1.5;
 }
+
+/* ===========================================
+   ÁLBUM DE FOTOS
+   =========================================== */
+
+.album-botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.button-album {
+    background-color: var(--cor-serenity);
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.button-album:hover {
+    background-color: var(--cor-serenity-escuro);
+    transform: translateY(-2px);
+}
+
