@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Fotos – MEM2026</title>
+
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@500;600;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/mem2026.css">
+
+    <style>
+        .upload-container {
+            max-width: 720px;
+            margin: auto;
+            padding: 40px 20px 80px;
+        }
+
+        .upload-title {
+            font-family: 'Playfair Display';
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .upload-desc {
+            font-family: 'EB Garamond';
+            font-size: 1.2rem;
+            color: var(--cor-preto-quente);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Área de upload */
+        #file-input {
+            display: none;
+        }
+
+        .upload-area {
+            padding: 35px;
+            border: 2px dashed var(--cor-serenity);
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            font-family: 'EB Garamond';
+            font-size: 1.2rem;
+            transition: .3s ease;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .upload-area:hover {
+            background: rgba(167, 199, 231, 0.2);
+        }
+
+        /* Pré-visualização */
+        .preview-grid {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 18px;
+        }
+
+        .preview-card img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Botão enviar */
+        .button-enviar {
+            margin-top: 30px;
+            background-color: var(--cor-serenity);
+            padding: 14px 26px;
+            border-radius: 14px;
+            font-family: 'Playfair Display';
+            font-size: 1.2rem;
+            color: white;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .button-enviar:hover {
+            background-color: var(--cor-serenity-escuro);
+        }
+
+        .loading {
+            margin-top: 12px;
+            font-family: 'EB Garamond';
+            text-align: center;
+            display: none;
+        }
+
+        .success {
+            margin-top: 25px;
+            font-family: 'Cormorant Garamond';
+            font-size: 1.6rem;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero-interno">
+        <div class="overlay-interno"></div>
+        <h1 class="titulo-interno">Enviar Fotos</h1>
+    </section>
+
+    <div class="upload-container fade-in">
+
+        <h2 class="upload-title">Compartilhe seus melhores momentos ✨</h2>
+        <p class="upload-desc">
+            Selecione quantas fotos quiser e clique em enviar.
+        </p>
+
+        <!-- Área de upload -->
+        <div class="upload-area" onclick="document.getElementById('file-input').click();">
+            Clique aqui para escolher suas fotos 📷
+        </div>
+
+        <input type="file" id="file-input" accept="image/*" multiple>
+
+        <!-- Grid de pré-visualização -->
+        <div id="preview" class="preview-grid"></div>
+
+        <!-- Botão enviar -->
+        <button class="button-enviar" id="btnEnviar">Enviar Fotos</button>
+
+        <div class="loading" id="loading">Enviando fotos, aguarde...</div>
+        <div class="success" id="successMsg">Fotos enviadas com sucesso! 🎉</div>
+
+    </div>
+
+    <script>
+        const fileInput = document.getElementById("file-input");
+        const preview = document.getElementById("preview");
+
+        fileInput.addEventListener("change", () => {
+            preview.innerHTML = "";
+            [...fileInput.files].forEach(file => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const div = document.createElement("div");
+                    div.classList.add("preview-card");
+                    div.innerHTML = `<img src="${e.target.result}">`;
+                    preview.appendChild(div);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        // Envio para backend (Apps Script)
+        const btnEnviar = document.getElementById("btnEnviar");
+        const loading = document.getElementById("loading");
+        const successMsg = document.getElementById("successMsg");
+
+        const scriptURL = "COLE_AQUI_A_URL_DO_SEU_WEBAPP";
+
+        btnEnviar.addEventListener("click", () => {
+            if (fileInput.files.length === 0) {
+                alert("Selecione ao menos uma foto.");
+                return;
+            }
+
+            loading.style.display = "block";
+
+            let arquivos = [];
+            const total = fileInput.files.length;
+            let carregados = 0;
+
+            [...fileInput.files].forEach(file => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    arquivos.push({
+                        nome: file.name,
+                        tipo: file.type,
+                        base64: reader.result
+                    });
+                    carregados++;
+                    if (carregados === total) enviarTudo();
+                };
+                reader.readAsDataURL(file);
+            });
+
+            function enviarTudo() {
+                fetch(scriptURL, {
+                    method: "POST",
+                    body: JSON.stringify({ fotos: arquivos })
+                })
+                    .then(() => {
+                        loading.style.display = "none";
+                        successMsg.style.display = "block";
+                        fileInput.value = "";
+                        preview.innerHTML = "";
+                    })
+                    .catch(() => {
+                        loading.innerText = "Erro ao enviar. Tente novamente.";
+                    });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
