@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala da Noiva – Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@500;600;700&family=EB+Garamond&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/mem2026.css">
+
+    <style>
+        body {
+            background: url('assets/rosa-textura.png');
+            background-size: cover;
+            background-repeat: repeat;
+            backdrop-filter: blur(2px);
+        }
+
+        .login-container {
+            max-width: 420px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            background: rgba(255,255,255,0.65);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .brasao {
+            width: 260px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        .login-title {
+            font-family: "Playfair Display";
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .blocked-message {
+            font-family: "EB Garamond";
+            font-size: 1.4rem;
+            background: rgba(255,255,255,0.8);
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 60px;
+            text-align: center;
+            color: #7a4a5b;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 1px solid #cfa3b5;
+            font-size: 1.1rem;
+            font-family: "EB Garamond";
+            background: rgba(255,255,255,0.8);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background: #E9B6CC;
+            border: none;
+            border-radius: 12px;
+            font-family: "Playfair Display";
+            font-size: 1.2rem;
+            color: white;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #d89db7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BLOQUEIO POR DATA -->
+    <div id="blocked" class="blocked-message" style="display:none;">
+        Esta sala especial só estará disponível no dia <b>25/12/2025</b>, minha MaiLoV 🌹♥️.
+    </div>
+
+    <div id="loginBox" class="login-container" style="display:none;">
+        <img src="assets/brasao.png" class="brasao">
+        <h1 class="login-title">Sala da Noiva</h1>
+
+        <input id="user" class="login-input" placeholder="Usuário">
+        <input id="pass" type="password" class="login-input" placeholder="Senha">
+
+        <button class="login-button" onclick="login()">Entrar</button>
+    </div>
+
+    <script>
+        const releaseDate = new Date("2025-12-25T00:00:00");
+
+        if (new Date() < releaseDate) {
+            document.getElementById("blocked").style.display = "block";
+        } else {
+            document.getElementById("loginBox").style.display = "block";
+        }
+
+        function login() {
+            const user = document.getElementById("user").value;
+            const pass = document.getElementById("pass").value;
+
+            if (user === "noiva" && pass === "mem2026") {
+                window.location.href = "sala-noiva.html";
+            } else {
+                alert("Acesso negado. Tente novamente.");
+            }
+        }
+    </script>
+
+</body>
+</html>
