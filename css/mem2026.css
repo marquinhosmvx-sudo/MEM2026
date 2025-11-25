@@ -861,3 +861,22 @@ body {
         transform:translateY(0);
     }
 }
+
+/* ------- FUNDO SALA DA NOIVA COM TEXTURA ROSA + BRASÃO CENTRAL ------- */
+
+body.sala-noiva-body {
+    background: 
+        url('assets/brasao.png') center center no-repeat,
+        url('assets/rosa-textura-rosa.png');
+    background-size: 620px, cover;
+    background-attachment: fixed;
+}
+
+/* Véu editorial suave para leitura */
+body.sala-noiva-body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.18);
+    pointer-events: none;
+}
