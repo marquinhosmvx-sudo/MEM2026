@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Painel MEM2026 – Editar Conteúdo</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f6f2f4;
+            font-family: "EB Garamond";
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-box, .panel {
+            max-width: 650px;
+            margin: 40px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-family: "Playfair Display";
+            margin-bottom: 20px;
+            text-align: center;
+            color: #5b3b47;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px;
+            border-radius: 12px;
+            border: 1px solid #c8a8b6;
+            font-family: "EB Garamond";
+            font-size: 1.1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: #e6adc4;
+            color: white;
+            font-family: "Playfair Display";
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        button:hover {
+            background: #d291ad;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        label {
+            font-weight: 600;
+            color: #4e2f38;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- LOGIN -->
+    <div id="loginBox" class="login-box">
+        <h2>Login do Administrador</h2>
+
+        <label>Usuário:</label>
+        <input type="text" id="user">
+
+        <label>Senha:</label>
+        <input type="password" id="pass">
+
+        <button onclick="login()">Entrar</button>
+
+        <p id="loginError" style="color:#a33; text-align:center; display:none; margin-top:10px;">
+            Usuário ou senha incorretos.
+        </p>
+    </div>
+
+    <!-- PAINEL -->
+    <div id="panel" class="panel hidden">
+        <h2>Editar Conteúdo da Sala da Noiva</h2>
+
+        <label>Título do Hero</label>
+        <input id="heroTitulo">
+
+        <label>Subtítulo</label>
+        <input id="heroSubtitulo">
+
+        <label>Carta Especial</label>
+        <textarea id="carta" rows="6"></textarea>
+
+        <label>Frase Final</label>
+        <input id="fraseFinal">
+
+        <button onclick="salvar()">Salvar Alterações</button>
+
+        <p id="saveMsg" style="color:green; margin-top:15px; display:none;">
+            Conteúdo atualizado com sucesso!
+        </p>
+    </div>
+
+    <!-- FIREBASE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc }
+            from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCTet1E68tHv4bkYo27EVkwW8y1GvRjb4U",
+            authDomain: "mem2026-bfd73.firebaseapp.com",
+            projectId: "mem2026-bfd73",
+            storageBucket: "mem2026-bfd73.firebasestorage.app",
+            messagingSenderId: "677143363652",
+            appId: "1:677143363652:web:4cf76964c39e102804fc11"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // LOGIN SIMPLES
+        const adminUser = "marcos";
+        const adminPass = "Mari2026";
+
+        window.login = function() {
+            const u = document.getElementById("user").value.trim();
+            const p = document.getElementById("pass").value.trim();
+
+            if (u === adminUser && p === adminPass) {
+                document.getElementById("loginBox").classList.add("hidden");
+                document.getElementById("panel").classList.remove("hidden");
+                carregar();
+            } else {
+                document.getElementById("loginError").style.display = "block";
+            }
+        }
+
+        // CARREGAR DADOS DO FIRESTORE
+        async function carregar() {
+            const ref = doc(db, "noiva_conteudo", "mensagens");
+            const snap = await getDoc(ref);
+
+            if (!snap.exists()) {
+                await setDoc(ref, {
+                    heroTitulo: "Bem-vinda à sua sala, MaiLov 💗",
+                    heroSubtitulo: "Cada detalhe aqui é um pedacinho do meu amor por você…",
+                    carta: "Sua carta especial vai aqui...",
+                    fraseFinal: "Obrigado por ser a Rosa mais bonita do meu Jardim! 🌹"
+                });
+            }
+
+            const data = (await getDoc(ref)).data();
+
+            document.getElementById("heroTitulo").value = data.heroTitulo;
+            document.getElementById("heroSubtitulo").value = data.heroSubtitulo;
+            document.getElementById("carta").value = data.carta;
+            document.getElementById("fraseFinal").value = data.fraseFinal;
+        }
+
+        // SALVAR DADOS
+        window.salvar = async function () {
+            const ref = doc(db, "noiva_conteudo", "mensagens");
+
+            await updateDoc(ref, {
+                heroTitulo: document.getElementById("heroTitulo").value,
+                heroSubtitulo: document.getElementById("heroSubtitulo").value,
+                carta: document.getElementById("carta").value,
+                fraseFinal: document.getElementById("fraseFinal").value
+            });
+
+            document.getElementById("saveMsg").style.display = "block";
+            setTimeout(() => document.getElementById("saveMsg").style.display = "none", 2000);
+        }
+
+    </script>
+
+</body>
+</html>
