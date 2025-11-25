@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala da Noiva – Login</title>
 
+    <!-- Fontes oficiais -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@500;600;700&family=EB+Garamond&display=swap" rel="stylesheet">
 
+    <!-- Estilos do projeto -->
     <link rel="stylesheet" href="css/mem2026.css">
 
     <style>
@@ -15,68 +17,7 @@
             background-size: cover;
             background-repeat: repeat;
             backdrop-filter: blur(2px);
-        }
-
-        .login-container {
-            max-width: 420px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            background: rgba(255,255,255,0.65);
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .brasao {
-            width: 260px;
-            margin: 0 auto 20px;
-            display: block;
-        }
-
-        .login-title {
-            font-family: "Playfair Display";
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .blocked-message {
-            font-family: "EB Garamond";
-            font-size: 1.4rem;
-            background: rgba(255,255,255,0.8);
-            padding: 25px;
-            border-radius: 16px;
-            margin-top: 60px;
-            text-align: center;
-            color: #7a4a5b;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            border: 1px solid #cfa3b5;
-            font-size: 1.1rem;
-            font-family: "EB Garamond";
-            background: rgba(255,255,255,0.8);
-        }
-
-        .login-button {
-            width: 100%;
-            padding: 12px;
-            background: #E9B6CC;
-            border: none;
-            border-radius: 12px;
-            font-family: "Playfair Display";
-            font-size: 1.2rem;
-            color: white;
-            transition: .3s;
-            cursor: pointer;
-        }
-
-        .login-button:hover {
-            background: #d89db7;
+            animation: fadeIn 1.2s ease forwards;
         }
     </style>
 </head>
@@ -85,36 +26,53 @@
 
     <!-- BLOQUEIO POR DATA -->
     <div id="blocked" class="blocked-message" style="display:none;">
-        Esta sala especial só estará disponível no dia <b>25/12/2025</b>, minha MaiLoV 🌹♥️.
+        Esta sala especial só estará disponível no dia <b>25/12/2025</b>, minha MaiLov 🌹💙<br>
+        Talvez no Natal esteja pronto pra você.
     </div>
 
+    <!-- ÁREA DE LOGIN -->
     <div id="loginBox" class="login-container" style="display:none;">
-        <img src="assets/brasao.png" class="brasao">
-        <h1 class="login-title">Sala da Noiva</h1>
 
-        <input id="user" class="login-input" placeholder="Usuário">
-        <input id="pass" type="password" class="login-input" placeholder="Senha">
+        <img src="assets/brasao.png" class="brasao fade-slow">
 
-        <button class="login-button" onclick="login()">Entrar</button>
+        <h1 class="login-title fade-up">Sala da Noiva</h1>
+
+        <input id="user" class="login-input fade-up" placeholder="Usuário (MaiLov)">
+        <input id="pass" type="password" class="login-input fade-up" placeholder="Digite o código secreto…">
+
+        <button class="login-button fade-up" onclick="login()">Entrar</button>
+
+        <p id="errorMessage" class="error-message fade-up" style="display:none;"></p>
+
     </div>
 
     <script>
         const releaseDate = new Date("2025-12-25T00:00:00");
+        const now = new Date();
 
-        if (new Date() < releaseDate) {
+        // Controle de liberação por data
+        if (now < releaseDate) {
             document.getElementById("blocked").style.display = "block";
         } else {
             document.getElementById("loginBox").style.display = "block";
         }
 
+        // Função de login
         function login() {
-            const user = document.getElementById("user").value;
-            const pass = document.getElementById("pass").value;
+            const user = document.getElementById("user").value.trim();
+            const pass = document.getElementById("pass").value.trim();
+            const errorMessage = document.getElementById("errorMessage");
 
-            if (user === "noiva" && pass === "mem2026") {
+            if (user === "MaiLov" && pass === "mari250512") {
                 window.location.href = "sala-noiva.html";
             } else {
-                alert("Acesso negado. Tente novamente.");
+                errorMessage.style.display = "block";
+                errorMessage.innerHTML =
+                `
+                Ops, MaiLov… acho que o código não está certo ainda 💗<br>
+                Tenta de novo com carinho…<br>
+                Talvez no Natal esteja pronto pra você.
+                `;
             }
         }
     </script>
