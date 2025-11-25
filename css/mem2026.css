@@ -558,3 +558,107 @@ body {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ---------- SALA DA NOIVA LOGIN – PREMIUM ---------- */
+
+.login-container {
+    max-width: 420px;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding: 40px 25px;
+    background: rgba(255, 255, 255, 0.70);
+    border-radius: 22px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    animation: fadeUp 1.2s ease forwards;
+}
+
+.brasao {
+    width: 260px;
+    margin-bottom: 20px;
+    opacity: 0;
+}
+
+.login-title {
+    font-family: "Playfair Display";
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #3a3a3a;
+}
+
+.login-input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+    border-radius: 14px;
+    border: 1px solid #d8b3c6;
+    font-size: 1.1rem;
+    font-family: "EB Garamond";
+    background: rgba(255, 255, 255, 0.9);
+    transition: 0.3s ease;
+}
+
+.login-input:focus {
+    outline: none;
+    border-color: #E9B6CC;
+    box-shadow: 0 0 10px rgba(233, 182, 204, 0.4);
+}
+
+.login-button {
+    width: 100%;
+    padding: 14px;
+    background: #E9B6CC;
+    border: none;
+    border-radius: 14px;
+    font-family: "Playfair Display";
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.login-button:hover {
+    background: #d89db7;
+    transform: translateY(-2px);
+}
+
+.error-message {
+    margin-top: 15px;
+    font-family: "EB Garamond";
+    font-size: 1.1rem;
+    color: #7a4a5b;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 12px 14px;
+    border-radius: 12px;
+    line-height: 1.45;
+}
+
+/* Mensagem de acesso bloqueado */
+.blocked-message {
+    max-width: 480px;
+    margin: 80px auto;
+    padding: 30px;
+    font-family: "EB Garamond";
+    font-size: 1.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 18px;
+    color: #7a4a5b;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* ---------- Animações ---------- */
+
+@keyframes fadeUp {
+    0% {opacity: 0; transform: translateY(18px);}
+    100% {opacity: 1; transform: translateY(0);}
+}
+
+.fade-slow {
+    animation: fadeUp 1.4s ease forwards;
+}
+
+.fade-up {
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards;
+}
