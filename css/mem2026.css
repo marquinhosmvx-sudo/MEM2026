@@ -862,21 +862,33 @@ body {
     }
 }
 
-/* ------- FUNDO SALA DA NOIVA COM TEXTURA ROSA + BRASÃO CENTRAL ------- */
+/* ------- FUNDO SALA DA NOIVA (TEXTURA ROSA + BRASÃO EDITORIAL) ------- */
 
 body.sala-noiva-body {
     background: 
         url('assets/brasao.png') center center no-repeat,
         url('assets/rosa-textura-rosa.png');
-    background-size: 620px, cover;
+    background-size: 900px, cover;  /* brasão maior e elegante */
     background-attachment: fixed;
+    position: relative;
 }
 
-/* Véu editorial suave para leitura */
+/* Opacidade suave do brasão (marca d'água editorial) */
 body.sala-noiva-body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.32); /* véu mais forte para suavizar o brasão */
+    pointer-events: none;
+}
+
+/* Deixa o brasão realmente suave */
+body.sala-noiva-body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url('assets/brasao.png') center center no-repeat;
+    background-size: 900px;
+    opacity: 0.12; /* marca d’água perfeita */
     pointer-events: none;
 }
