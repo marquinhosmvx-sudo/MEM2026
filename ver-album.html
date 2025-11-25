@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Álbum – MEM2026</title>
+
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@500;600;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/mem2026.css">
+
+    <style>
+        .album-container {
+            max-width: 1080px;
+            margin: auto;
+            padding: 40px 20px 80px;
+        }
+
+        .album-title {
+            font-family: 'Playfair Display';
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .album-desc {
+            font-family: 'EB Garamond';
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--cor-preto-quente);
+            margin-bottom: 40px;
+        }
+
+        /* Grid de fotos */
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .foto-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: .3s ease;
+        }
+
+        .foto-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: .3s ease;
+        }
+
+        .foto-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .no-fotos {
+            font-family: 'Cormorant Garamond';
+            font-size: 1.6rem;
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HERO INTERNO -->
+    <section class="hero-interno">
+        <div class="overlay-interno"></div>
+        <h1 class="titulo-interno">Álbum de Fotos</h1>
+    </section>
+
+    <div class="album-container fade-in">
+
+        <h2 class="album-title">Momentos Registrados ✨</h2>
+        <p class="album-desc">Veja aqui todas as fotos enviadas pelos convidados.</p>
+
+        <!-- GRID DINÂMICO -->
+        <div id="albumGrid" class="album-grid"></div>
+
+        <p id="noFotos" class="no-fotos" style="display:none;">
+            Nenhuma foto enviada ainda.
+        </p>
+
+        <!-- Botões -->
+        <div class="voltar" style="margin-top: 60px;">
+            <a href="album.html" class="button-primary" style="margin-bottom:15px; display:block;">⬅ Voltar ao álbum</a>
+            <a href="index.html" class="button-primary" style="margin-bottom:15px; display:block;">🏡 Home</a>
+        </div>
+
+    </div>
+
+    <script>
+        const API_URL = "COLE_AQUI_A_URL_DO_SEU_WEBAPP?listarFotos=1";
+
+        const albumGrid = document.getElementById("albumGrid");
+        const noFotos = document.getElementById("noFotos");
+
+        async function carregarFotos() {
+            try {
+                const response = await fetch(API_URL);
+                const fotos = await response.json();
+
+                if (!fotos || fotos.length === 0) {
+                    noFotos.style.display = "block";
+                    return;
+                }
+
+                fotos.forEach(foto => {
+                    const div = document.createElement("div");
+                    div.classList.add("foto-card");
+                    div.innerHTML = `
+                        <img src="${foto.url}" alt="Foto enviada">
+                    `;
+                    albumGrid.appendChild(div);
+                });
+
+            } catch (err) {
+                noFotos.innerText = "Erro ao carregar o álbum.";
+                noFotos.style.display = "block";
+            }
+        }
+
+        carregarFotos();
+    </script>
+
+</body>
+
+</html>
