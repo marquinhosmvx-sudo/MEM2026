@@ -1,5 +1,211 @@
-<!DOCTYPE html><html><head>
-<meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel='stylesheet' href='css/mem2026.css'>
-<title>MEM2026</title>
-</head><body><h1>Sala da Noiva</h1></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala da Noiva – MEM2026</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Playfair+Display:wght@400;500;600&family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/mem2026.css">
+
+    <style>
+        body {
+            background: url('assets/rosa-textura.png');
+            background-size: cover;
+            background-repeat: repeat;
+            backdrop-filter: blur(2px);
+            animation: fadeIn 1.2s ease forwards;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section class="noiva-hero fade-in">
+        <h1 class="noiva-hero-title">Bem-vinda à sua sala, MaiLov 💗</h1>
+        <p class="noiva-hero-sub">Cada detalhe aqui é um pedacinho do meu amor por você…</p>
+    </section>
+
+
+    <!-- CARTA ESPECIAL -->
+    <section class="noiva-section fade-up">
+        <h2 class="noiva-title">Uma Carta Para Você</h2>
+
+        <div class="noiva-card">
+            <p class="noiva-text">
+                MaiLov, você é a luz que ilumina meus dias e a calma que abraça minhas noites.
+                Cada parte desta sala foi criada com carinho, lembrando dos nossos momentos, dos nossos sonhos
+                e de tudo aquilo que ainda vamos construir juntos.<br><br>
+
+                Este espaço existe porque você merece algo tão especial quanto o amor que você me dá —
+                um cantinho só seu, onde cada imagem, cada palavra e cada detalhe
+                foram feitos pensando em você.<br><br>
+
+                Que esta sala te abrace sempre que você entrar aqui.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- GALERIA PRIVADA -->
+    <section class="noiva-section fade-up">
+        <h2 class="noiva-title">Galeria Privada</h2>
+
+        <div class="galeria-grid">
+            <img src="assets/foto1.jpg" class="galeria-item" onclick="openLightbox(this.src)">
+            <img src="assets/foto2.jpg" class="galeria-item" onclick="openLightbox(this.src)">
+            <img src="assets/foto3.jpg" class="galeria-item" onclick="openLightbox(this.src)">
+            <img src="assets/foto4.jpg" class="galeria-item" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img">
+    </div>
+
+
+    <!-- SURPRESAS & PRESENTES -->
+    <section class="noiva-section fade-up">
+        <h2 class="noiva-title">Surpresas & Presentes</h2>
+
+        <div class="surpresas-grid">
+
+            <div class="surpresa-card" onclick="openModal('modalCarta')">
+                💌 Carta Exclusiva
+            </div>
+
+            <div class="surpresa-card" onclick="openModal('modalAudio')">
+                🎧 Mensagem em Áudio
+            </div>
+
+            <div class="surpresa-card" onclick="openModal('modalVideo')">
+                🎥 Vídeo Especial
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MODAIS -->
+
+    <!-- Carta -->
+    <div id="modalCarta" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modalCarta')">&times;</span>
+            <h3 class="modal-title">Carta Exclusiva</h3>
+            <p class="modal-text">
+                Minha MaiLov… nada no mundo explica o quanto você transforma tudo ao seu redor.
+                Obrigado por ser meu lar, minha calma e meu futuro.
+            </p>
+        </div>
+    </div>
+
+    <!-- Audio -->
+    <div id="modalAudio" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modalAudio')">&times;</span>
+            <h3 class="modal-title">Mensagem em Áudio</h3>
+            <audio controls style="width:100%;">
+                <source src="assets/audio.mp3" type="audio/mp3">
+            </audio>
+        </div>
+    </div>
+
+    <!-- Vídeo -->
+    <div id="modalVideo" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('modalVideo')">&times;</span>
+            <h3 class="modal-title">Vídeo Especial</h3>
+            <video controls style="width:100%;">
+                <source src="assets/video.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+
+
+    <!-- LINHA DO TEMPO -->
+    <section class="noiva-section fade-up">
+        <h2 class="noiva-title">Nossas Recordações</h2>
+
+        <div class="timeline">
+
+            <div class="tl-item">
+                <span class="tl-date">2019</span>
+                <p class="tl-text">O começo de tudo… onde nossos caminhos se encontraram.</p>
+            </div>
+
+            <div class="tl-item">
+                <span class="tl-date">2021</span>
+                <p class="tl-text">Crescemos juntos, aprendemos juntos, sonhamos juntos.</p>
+            </div>
+
+            <div class="tl-item">
+                <span class="tl-date">2023</span>
+                <p class="tl-text">Construímos novos passos e fortalecemos laços.</p>
+            </div>
+
+            <div class="tl-item">
+                <span class="tl-date">2026</span>
+                <p class="tl-text">O grande dia… e o começo do nosso para sempre.</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- MENSAGENS DO NOIVO -->
+    <section class="noiva-section fade-up">
+        <h2 class="noiva-title">Mensagens Para Você</h2>
+
+        <div class="mensagens-grid">
+
+            <div class="mensagem-card">
+                Você é minha paz e minha melhor história.
+            </div>
+
+            <div class="mensagem-card">
+                A cada dia tenho mais certeza de que Deus te fez especialmente para mim.
+            </div>
+
+            <div class="mensagem-card">
+                Nada no mundo é tão bonito quanto seu sorriso, MaiLov.
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FRASE FINAL -->
+    <section class="noiva-section noiva-final fade-up">
+        <p class="noiva-final-text">
+            Obrigado por ser a Rosa mais bonita do meu Jardim! 🌹
+        </p>
+    </section>
+
+
+    <script>
+        function openLightbox(src) {
+            const lb = document.getElementById("lightbox");
+            const img = document.getElementById("lightbox-img");
+
+            img.src = src;
+            lb.style.display = "flex";
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+
+        function openModal(id) {
+            document.getElementById(id).style.display = "flex";
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
