@@ -387,3 +387,165 @@ body {
     transform: translateY(-2px);
 }
 
+/* =====================================================
+   ÁLBUM DE FOTOS — BOTÕES DA PÁGINA album.html
+   ===================================================== */
+
+.album-botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.button-album {
+    background-color: var(--cor-serenity);
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s ease;
+}
+
+.button-album:hover {
+    background-color: var(--cor-serenity-escuro);
+    transform: translateY(-2px);
+}
+
+/* =====================================================
+   UPLOAD DE FOTOS — Página upload-fotos.html
+   ===================================================== */
+
+.upload-container {
+    max-width: 720px;
+    margin: auto;
+    padding: 40px 20px 80px;
+}
+
+.upload-area {
+    padding: 35px;
+    border: 2px dashed var(--cor-serenity);
+    border-radius: 16px;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    transition: 0.3s ease;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.upload-area:hover {
+    background: rgba(167, 199, 231, 0.2);
+}
+
+.preview-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 18px;
+}
+
+.preview-card img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.button-enviar {
+    margin-top: 30px;
+    background-color: var(--cor-serenity);
+    padding: 14px 26px;
+    border-radius: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: white;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.button-enviar:hover {
+    background-color: var(--cor-serenity-escuro);
+}
+
+.loading {
+    margin-top: 12px;
+    font-family: 'EB Garamond', serif;
+    text-align: center;
+    display: none;
+}
+
+.success {
+    margin-top: 25px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    text-align: center;
+    display: none;
+}
+
+/* =====================================================
+   GALERIA — Página ver-album.html
+   ===================================================== */
+
+.album-container {
+    max-width: 1080px;
+    margin: auto;
+    padding: 40px 20px 80px;
+}
+
+.album-title {
+    font-family: 'Playfair Display';
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.album-desc {
+    font-family: 'EB Garamond';
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--cor-preto-quente);
+    margin-bottom: 40px;
+}
+
+.album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.foto-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+
+.foto-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: 0.3s ease;
+}
+
+.foto-card:hover img {
+    transform: scale(1.05);
+}
+
+.no-fotos {
+    font-family: 'Cormorant Garamond';
+    font-size: 1.6rem;
+    text-align: center;
+    margin-top: 40px;
+    opacity: 0.8;
+}
+
