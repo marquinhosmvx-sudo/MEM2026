@@ -10,202 +10,268 @@
     <link rel="stylesheet" href="css/mem2026.css">
 
     <style>
-        body {
-            background: url('assets/rosa-textura-rosa.png');
+        body.sala {
+            background: url('assets/rosa-textura-rosa.png') center center repeat fixed;
             background-size: cover;
-            background-repeat: repeat;
-            backdrop-filter: blur(2px);
-            animation: fadeIn 1.2s ease forwards;
+        }
+
+        .noiva-section {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .noiva-card {
+            background: #ffffffdd;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .galeria-grid img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .mensagem-card {
+            background: white;
+            padding: 18px;
+            border-radius: 14px;
+            margin-bottom: 14px;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border-left: 4px solid #c38ca5;
+        }
+
+        audio, video {
+            width: 100%;
+            margin-top: 12px;
+            border-radius: 12px;
         }
     </style>
 </head>
 
-<body>
+<body class="sala">
 
     <!-- HERO -->
-    <section class="noiva-hero fade-in">
-        <h1 class="noiva-hero-title">Bem-vinda à sua sala, MaiLov 💗</h1>
-        <p class="noiva-hero-sub">Cada detalhe aqui é um pedacinho do meu amor por você…</p>
+    <section class="noiva-hero fade-in" style="text-align:center; padding:60px 20px;">
+        <h1 id="heroTitulo" class="noiva-hero-title">Carregando...</h1>
+        <p id="heroSubtitulo" class="noiva-hero-sub">Aguarde...</p>
     </section>
-
 
     <!-- CARTA ESPECIAL -->
     <section class="noiva-section fade-up">
         <h2 class="noiva-title">Uma Carta Para Você</h2>
-
         <div class="noiva-card">
-            <p class="noiva-text">
-                MaiLov, você é a luz que ilumina meus dias e a calma que abraça minhas noites.
-                Cada parte desta sala foi criada com carinho, lembrando dos nossos momentos, dos nossos sonhos
-                e de tudo aquilo que ainda vamos construir juntos.<br><br>
-
-                Este espaço existe porque você merece algo tão especial quanto o amor que você me dá —
-                um cantinho só seu, onde cada imagem, cada palavra e cada detalhe
-                foram feitos pensando em você.<br><br>
-
-                Que esta sala te abrace sempre que você entrar aqui.
-            </p>
+            <p id="cartaEspecial">Carregando sua carta, MaiLov...</p>
         </div>
     </section>
-
-
-    <!-- GALERIA PRIVADA -->
-    <section class="noiva-section fade-up">
-        <h2 class="noiva-title">Galeria Privada</h2>
-
-        <div class="galeria-grid">
-            <img src="assets/foto1.jpg" class="galeria-item" onclick="openLightbox(this.src)">
-            <img src="assets/foto2.jpg" class="galeria-item" onclick="openLightbox(this.src)">
-            <img src="assets/foto3.jpg" class="galeria-item" onclick="openLightbox(this.src)">
-            <img src="assets/foto4.jpg" class="galeria-item" onclick="openLightbox(this.src)">
-        </div>
-    </section>
-
-    <!-- LIGHTBOX -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img">
-    </div>
-
-
-    <!-- SURPRESAS & PRESENTES -->
-    <section class="noiva-section fade-up">
-        <h2 class="noiva-title">Surpresas & Presentes</h2>
-
-        <div class="surpresas-grid">
-
-            <div class="surpresa-card" onclick="openModal('modalCarta')">
-                💌 Carta Exclusiva
-            </div>
-
-            <div class="surpresa-card" onclick="openModal('modalAudio')">
-                🎧 Mensagem em Áudio
-            </div>
-
-            <div class="surpresa-card" onclick="openModal('modalVideo')">
-                🎥 Vídeo Especial
-            </div>
-
-        </div>
-    </section>
-
-    <!-- MODAIS -->
-
-    <!-- Carta -->
-    <div id="modalCarta" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('modalCarta')">&times;</span>
-            <h3 class="modal-title">Carta Exclusiva</h3>
-            <p class="modal-text">
-                Minha MaiLov… nada no mundo explica o quanto você transforma tudo ao seu redor.
-                Obrigado por ser meu lar, minha calma e meu futuro.
-            </p>
-        </div>
-    </div>
-
-    <!-- Audio -->
-    <div id="modalAudio" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('modalAudio')">&times;</span>
-            <h3 class="modal-title">Mensagem em Áudio</h3>
-            <audio controls style="width:100%;">
-                <source src="assets/audio.mp3" type="audio/mp3">
-            </audio>
-        </div>
-    </div>
-
-    <!-- Vídeo -->
-    <div id="modalVideo" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal('modalVideo')">&times;</span>
-            <h3 class="modal-title">Vídeo Especial</h3>
-            <video controls style="width:100%;">
-                <source src="assets/video.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-
-
-
-    <!-- LINHA DO TEMPO -->
-    <section class="noiva-section fade-up">
-        <h2 class="noiva-title">Nossas Recordações</h2>
-
-        <div class="timeline">
-
-            <div class="tl-item">
-                <span class="tl-date">2019</span>
-                <p class="tl-text">O começo de tudo… onde nossos caminhos se encontraram.</p>
-            </div>
-
-            <div class="tl-item">
-                <span class="tl-date">2021</span>
-                <p class="tl-text">Crescemos juntos, aprendemos juntos, sonhamos juntos.</p>
-            </div>
-
-            <div class="tl-item">
-                <span class="tl-date">2023</span>
-                <p class="tl-text">Construímos novos passos e fortalecemos laços.</p>
-            </div>
-
-            <div class="tl-item">
-                <span class="tl-date">2026</span>
-                <p class="tl-text">O grande dia… e o começo do nosso para sempre.</p>
-            </div>
-
-        </div>
-    </section>
-
 
     <!-- MENSAGENS DO NOIVO -->
     <section class="noiva-section fade-up">
-        <h2 class="noiva-title">Mensagens Para Você</h2>
+        <h2 class="noiva-title">Mensagens do Noivo</h2>
+        <div id="mensagensContainer"></div>
+    </section>
 
-        <div class="mensagens-grid">
+    <!-- GALERIA PRIVADA -->
+    <section class="noiva-section fade-up">
+        <h2 class="noiva-title">Nossa Galeria</h2>
+        <div id="galeriaContainer" class="galeria-grid"></div>
+    </section>
 
-            <div class="mensagem-card">
-                Você é minha paz e minha melhor história.
-            </div>
+    <!-- LINHA DO TEMPO -->
+    <section class="noiva-section fade-up">
+        <h2 class="noiva-title">Nossa História</h2>
+        <div id="timelineContainer"></div>
+    </section>
 
-            <div class="mensagem-card">
-                A cada dia tenho mais certeza de que Deus te fez especialmente para mim.
-            </div>
+    <!-- SURPRESAS -->
+    <section class="noiva-section fade-up">
+        <h2 class="noiva-title">Surpresas</h2>
 
-            <div class="mensagem-card">
-                Nada no mundo é tão bonito quanto seu sorriso, MaiLov.
-            </div>
-
+        <div class="noiva-card">
+            <h3>Carta Especial</h3>
+            <p id="surpresaCarta">Carregando...</p>
         </div>
+
+        <div id="surpresaAudioBox"></div>
+        <div id="surpresaVideoBox"></div>
     </section>
 
     <!-- FRASE FINAL -->
-    <section class="noiva-section noiva-final fade-up">
-        <p class="noiva-final-text">
-            Obrigado por ser a Rosa mais bonita do meu Jardim! 🌹
-        </p>
+    <section class="noiva-section fade-up" style="text-align:center;">
+        <p id="fraseFinal" style="font-size:1.4rem; color:#4b2d36;">Carregando...</p>
     </section>
 
+    <!-- FIREBASE LOADER -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import {
+            getFirestore, doc, getDoc, collection, getDocs
+        } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-    <script>
-        function openLightbox(src) {
-            const lb = document.getElementById("lightbox");
-            const img = document.getElementById("lightbox-img");
+        const firebaseConfig = {
+            apiKey: "AIzaSyCTet1E68tHv4bkYo27EVkwW8y1GvRjb4U",
+            authDomain: "mem2026-bfd73.firebaseapp.com",
+            projectId: "mem2026-bfd73",
+            storageBucket: "mem2026-bfd73.firebasestorage.app",
+            messagingSenderId: "677143363652",
+            appId: "1:677143363652:web:4cf76964c39e102804fc11"
+        };
 
-            img.src = src;
-            lb.style.display = "flex";
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+
+        /* ---------------------------
+           HERO
+        --------------------------- */
+        async function carregarHero() {
+            const snap = await getDoc(doc(db, "noiva_conteudo", "hero"));
+            if (snap.exists()) {
+                const d = snap.data();
+                document.getElementById("heroTitulo").innerHTML = d.titulo;
+                document.getElementById("heroSubtitulo").innerHTML = d.subtitulo;
+            }
         }
 
-        function closeLightbox() {
-            document.getElementById("lightbox").style.display = "none";
+
+        /* ---------------------------
+           CARTA
+        --------------------------- */
+        async function carregarCarta() {
+            const snap = await getDoc(doc(db, "noiva_conteudo", "carta"));
+            if (snap.exists()) {
+                document.getElementById("cartaEspecial").innerHTML = snap.data().texto;
+            }
         }
 
-        function openModal(id) {
-            document.getElementById(id).style.display = "flex";
+
+        /* ---------------------------
+           MENSAGENS DO NOIVO
+        --------------------------- */
+        async function carregarMensagens() {
+            const container = document.getElementById("mensagensContainer");
+            container.innerHTML = "";
+
+            const ref = collection(db, "noiva_conteudo", "mensagens", "itens");
+            const snap = await getDocs(ref);
+
+            snap.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "mensagem-card";
+                div.innerHTML = item.data().texto;
+                container.appendChild(div);
+            });
         }
 
-        function closeModal(id) {
-            document.getElementById(id).style.display = "none";
+
+        /* ---------------------------
+           GALERIA
+        --------------------------- */
+        async function carregarGaleria() {
+            const container = document.getElementById("galeriaContainer");
+            container.innerHTML = "";
+
+            const ref = collection(db, "noiva_conteudo", "galeria", "fotos");
+            const snap = await getDocs(ref);
+
+            snap.forEach(item => {
+                const img = document.createElement("img");
+                img.src = item.data().url;
+                container.appendChild(img);
+            });
         }
+
+
+        /* ---------------------------
+           LINHA DO TEMPO
+        --------------------------- */
+        async function carregarTimeline() {
+            const container = document.getElementById("timelineContainer");
+            container.innerHTML = "";
+
+            const ref = collection(db, "noiva_conteudo", "timeline", "anos");
+            const snap = await getDocs(ref);
+
+            snap.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "timeline-item";
+
+                div.innerHTML = `<strong>${item.data().ano}</strong> — ${item.data().texto}`;
+
+                container.appendChild(div);
+            });
+        }
+
+
+        /* ---------------------------
+           SURPRESAS
+        --------------------------- */
+        async function carregarSurpresas() {
+            const snap = await getDoc(doc(db, "noiva_conteudo", "surpresas"));
+
+            if (snap.exists()) {
+                const d = snap.data();
+
+                // carta
+                document.getElementById("surpresaCarta").innerHTML = d.carta || "";
+
+                // áudio
+                if (d.audio) {
+                    document.getElementById("surpresaAudioBox").innerHTML =
+                        `<audio controls src="${d.audio}"></audio>`;
+                }
+
+                // vídeo
+                if (d.video) {
+                    document.getElementById("surpresaVideoBox").innerHTML =
+                        `<video controls src="${d.video}"></video>`;
+                }
+            }
+        }
+
+
+        /* ---------------------------
+           FRASE FINAL
+        --------------------------- */
+        async function carregarFraseFinal() {
+            const snap = await getDoc(doc(db, "noiva_conteudo", "fraseFinal"));
+            if (snap.exists()) {
+                document.getElementById("fraseFinal").innerHTML = snap.data().texto;
+            }
+        }
+
+
+        /* ---------------------------
+           INICIALIZAÇÃO
+        --------------------------- */
+        async function carregarTudo() {
+            await carregarHero();
+            await carregarCarta();
+            await carregarMensagens();
+            await carregarGaleria();
+            await carregarTimeline();
+            await carregarSurpresas();
+            await carregarFraseFinal();
+        }
+
+        carregarTudo();
     </script>
 
 </body>
 </html>
+
