@@ -358,3 +358,25 @@ window.salvarFraseFinal = async function () {
 
     alert("Frase final atualizada!");
 };
+/* -------------------------
+   MENSAGENS DIRETAS (notificar via Cloud Function)
+------------------------- */
+
+window.enviarMensagemDireta = async function () {
+    const texto = document.getElementById("mensagemDiretaTexto").value.trim();
+
+    if (!texto) {
+        alert("Digite uma mensagem antes de enviar.");
+        return;
+    }
+
+    await addDoc(collection(db, "noiva_mensagens", "diretas", "itens"), {
+        texto: texto,
+        criadaEm: new Date()
+    });
+
+    document.getElementById("mensagemDiretaTexto").value = "";
+
+    alert("Mensagem enviada! A MaiLov será notificada por e-mail e WhatsApp 💌💬");
+};
+
