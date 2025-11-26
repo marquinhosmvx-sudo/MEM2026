@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel MEM2026 – Conteúdo</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "EB Garamond";
+            background: url('../assets/rosa-textura.png') center center repeat fixed;
+            background-size: cover;
+            backdrop-filter: blur(4px);
+        }
+
+        /* LOGIN */
+        #loginBox {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        h2 {
+            font-family: "Playfair Display";
+            text-align: center;
+            color: #3a3a3a;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 1.1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #5c7fa6;
+            font-family: "Playfair Display";
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #4f6c8c;
+        }
+
+        #loginError {
+            margin-top: 10px;
+            color: #a33;
+            text-align: center;
+            display: none;
+        }
+
+        /* PAINEL */
+        #panel {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 18px 40px;
+        }
+
+        .section {
+            background: white;
+            padding: 0;
+            margin: 20px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+        }
+
+        .section-header {
+            padding: 18px 20px;
+            background: #eef2f7;
+            cursor: pointer;
+            font-family: "Playfair Display";
+            font-size: 1.4rem;
+        }
+
+        .section-header:hover {
+            background: #e0e6ef;
+        }
+
+        .section-body {
+            display: none;
+            padding: 20px;
+        }
+
+        textarea, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            font-family: "EB Garamond";
+            font-size: 1.1rem;
+            border-radius: 12px;
+            border: 1px solid #d2d2d2;
+            margin-bottom: 15px;
+        }
+
+        .save-btn {
+            width: 100%;
+            background: #5c7fa6;
+            color: white;
+            border-radius: 12px;
+            padding: 12px;
+            border: none;
+            font-size: 1.2rem;
+            font-family: "Playfair Display";
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            background: #4f6c8c;
+        }
+
+        .item-list {
+            margin-top: 10px;
+        }
+
+        .list-item {
+            padding: 12px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .delete-btn {
+            float: right;
+            background: #c94a4a;
+            padding: 6px 12px;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #a83a3a;
+        }
+
+        .upload-btn {
+            padding: 10px 14px;
+            background: #5c7fa6;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .upload-btn:hover {
+            background: #4f6c8c;
+        }
+
+        .preview-img {
+            width: 120px;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN -->
+    <div id="loginBox">
+        <h2>Admin MEM2026</h2>
+
+        <input id="user" placeholder="Usuário">
+        <input id="pass" placeholder="Senha" type="password">
+
+        <button onclick="login()">Entrar</button>
+        <div id="loginError">Usuário ou senha inválidos.</div>
+    </div>
+
+    <!-- PAINEL -->
+    <div id="panel" style="display:none;">
+
+        <!-- HERO -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">Hero (Título e Subtítulo)</div>
+            <div class="section-body">
+                <input type="text" id="heroTitulo" placeholder="Título do Hero">
+                <input type="text" id="heroSubtitulo" placeholder="Subtítulo">
+                <button class="save-btn" onclick="salvarHero()">Salvar</button>
+            </div>
+        </div>
+
+        <!-- CARTA ESPECIAL -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">Carta Especial</div>
+            <div class="section-body">
+                <textarea id="carta" rows="7" placeholder="Digite a carta..."></textarea>
+                <button class="save-btn" onclick="salvarCarta()">Salvar</button>
+            </div>
+        </div>
+
+        <!-- MENSAGENS DO NOIVO -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">Mensagens do Noivo</div>
+            <div class="section-body">
+                <input type="text" id="novaMensagem" placeholder="Nova mensagem">
+                <button class="save-btn" onclick="adicionarMensagem()">Adicionar</button>
+
+                <div id="listaMensagens" class="item-list"></div>
+            </div>
+        </div>
+
+        <!-- GALERIA PRIVADA -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">Galeria Privada</div>
+            <div class="section-body">
+                <label class="upload-btn">
+                    Enviar Foto
+                    <input type="file" id="galeriaUpload" accept="image/*" style="display:none;">
+                </label>
+
+                <div id="listaGaleria" class="item-list"></div>
+            </div>
+        </div>
+
+        <!-- LINHA DO TEMPO -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">Linha do Tempo</div>
+            <div class="section-body">
+                <input type="number" id="timelineAno" placeholder="Ano">
+                <input type="text" id="timelineTexto" placeholder="Descrição do ano">
+                <button class="save-btn" onclick="addTimeline()">Adicionar</button>
+
+                <div id="listaTimeline" class="item-list"></div>
+            </div>
+        </div>
+
+        <!-- SURPRESAS -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">Surpresas</div>
+            <div class="section-body">
+
+                <label class="upload-btn">
+                    Enviar Áudio
+                    <input type="file" id="audioUpload" accept="audio/*" style="display:none;">
+                </label>
+
+                <label class="upload-btn">
+                    Enviar Vídeo
+                    <input type="file" id="videoUpload" accept="video/*" style="display:none;">
+                </label>
+
+                <textarea id="surpresaCarta" rows="5" placeholder="Carta da surpresa..."></textarea>
+
+                <button class="save-btn" onclick="salvarSurpresas()">Salvar</button>
+            </div>
+        </div>
+
+        <!-- FRASE FINAL -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">Frase Final</div>
+            <div class="section-body">
+                <input type="text" id="fraseFinal" placeholder="Frase especial...">
+                <button class="save-btn" onclick="salvarFraseFinal()">Salvar</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS EXTERNO -->
+    <script src="conteudo.js" type="module"></script>
+
+    <script>
+        function toggleSection(el) {
+            const body = el.nextElementSibling;
+            body.style.display = body.style.display === "block" ? "none" : "block";
+        }
+    </script>
+
+</body>
+</html>
